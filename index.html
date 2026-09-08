@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belver Agency — Muy pronto</title>
+<meta name="description" content="Belver Agency está construyendo un nuevo sitio. Muy pronto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Fraunces:ital,wght@0,400;0,600;1,400;1,500&family=Roboto+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080808;
+    --cream:#FFFFFF;
+    --orange:#F45B32;
+    --orange-d:#C8492A;
+    --green:#33704F;
+    --muted:rgba(255,255,255,.62);
+    --line:rgba(255,255,255,.16);
+    --display:'Roboto Condensed',sans-serif;
+    --accent-serif:'Fraunces',serif;
+    --logo-font:'Archivo',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ink);color:var(--cream);font-family:var(--display);
+    min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+    position:relative;overflow-x:hidden;
+  }
+  .glow{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 70% 50% at 30% 38%, rgba(244,91,50,.16), transparent 60%),
+               radial-gradient(ellipse 60% 45% at 78% 68%, rgba(51,112,79,.18), transparent 60%);
+  }
+  .grain{
+    position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  header.mark{
+    position:relative;z-index:1;padding:32px clamp(20px,5vw,56px) 0;
+    display:flex;flex-direction:column;line-height:.86;font-family:var(--logo-font);
+    font-weight:900;letter-spacing:-.01em;
+  }
+  header.mark .m1{color:var(--cream);font-size:19px;}
+  header.mark .m2{color:var(--green);font-size:19px;}
+
+  main{
+    position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;
+    padding:24px clamp(20px,5vw,56px);
+  }
+  .tag{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .tag .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  @media(prefers-reduced-motion:reduce){.tag .dot{animation:none;}}
+
+  h1{margin:0;font-weight:400;}
+  .w-sm{
+    display:block;margin-top:20px;font-family:var(--display);font-weight:700;
+    font-size:clamp(20px,2.6vw,28px);line-height:1.25;letter-spacing:-.01em;color:var(--cream);max-width:24ch;
+  }
+  .w-lg{
+    display:block;font-family:var(--accent-serif);font-style:italic;font-weight:400;
+    font-size:clamp(44px,10.5vw,160px);line-height:.88;letter-spacing:-.01em;margin-top:6px;color:var(--cream);
+  }
+  .w-accent{color:var(--orange);}
+
+  .sub{margin-top:32px;font-size:16px;line-height:1.6;color:var(--muted);max-width:46ch;}
+
+  footer.foot{
+    position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    padding:22px clamp(20px,5vw,56px) 28px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);
+  }
+  .lang-switch{display:flex;align-items:center;gap:7px;}
+  .lang-btn{background:none;border:none;padding:2px;cursor:pointer;font-family:var(--display);font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--muted);transition:color .15s ease;}
+  .lang-btn.active{color:var(--orange);}
+  .lang-btn:hover{color:var(--cream);}
+  .lang-dot{color:var(--line);}
+
+  @media(max-width:640px){
+    .w-lg{font-size:clamp(40px,15vw,80px);}
+    footer.foot{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grain"></div>
+
+  <header class="mark" aria-label="Belver Agency">
+    <span class="m1">BELVER</span><span class="m2">AGENCY</span>
+  </header>
+
+  <main>
+    <div class="tag"><span class="dot"></span><span data-i18n="tag">Sitio en construcción</span></div>
+    <h1>
+      <span class="w-sm" data-i18n="cap">Algo nuevo está en camino.</span>
+      <span class="w-lg" data-i18n-html="statement">Estamos<br>creando esto<br><span class="w-accent">para ti.</span></span>
+    </h1>
+    <p class="sub" data-i18n="sub">Muy pronto vas a ver la nueva cara de Belver — estrategia, marca y tecnología bajo una misma dirección.</p>
+  </main>
+
+  <footer class="foot">
+    <span data-i18n="rights">© 2026 Belver Agency. Todos los derechos reservados.</span>
+    <div class="lang-switch" id="langSwitch">
+      <button type="button" class="lang-btn active" data-lang="es">ES</button>
+      <span class="lang-dot">/</span>
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var DICT = {
+      tag:{es:"Sitio en construcción",en:"Site under construction"},
+      cap:{es:"Algo nuevo está en camino.",en:"Something new is on its way."},
+      statement:{es:"Estamos<br>creando esto<br><span class=\"w-accent\">para ti.</span>",en:"We're<br>building this<br><span class=\"w-accent\">for you.</span>"},
+      sub:{es:"Muy pronto vas a ver la nueva cara de Belver — estrategia, marca y tecnología bajo una misma dirección.",en:"Very soon you'll see the new face of Belver — strategy, brand and technology under one direction."},
+      rights:{es:"© 2026 Belver Agency. Todos los derechos reservados.",en:"© 2026 Belver Agency. All rights reserved."}
+    };
+    function applyLang(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(function(el){
+        var k = el.getAttribute('data-i18n');
+        if(DICT[k] && DICT[k][lang] !== undefined) el.textContent = DICT[k][lang];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+        var k = el.getAttribute('data-i18n-html');
+        if(DICT[k] && DICT[k][lang] !== undefined) el.innerHTML = DICT[k][lang];
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      try{ localStorage.setItem('belver-lang', lang); }catch(e){}
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+      b.addEventListener('click', function(){ applyLang(b.dataset.lang); });
+    });
+    var saved = 'es';
+    try{ var s = localStorage.getItem('belver-lang'); if(s === 'es' || s === 'en') saved = s; }catch(e){}
+    if(saved !== 'es'){ applyLang(saved); }
+  })();
+  </script>
+</body>
+</html>
