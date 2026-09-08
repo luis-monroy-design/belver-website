@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Belver Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Fraunces:ital,wght@0,400;0,600;1,400;1,500&family=Roboto+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#080808;
+    --ink-2:#29211D;
+    --paper:#FFFFFF;
+    --paper-2:#F4F3F1;
+    --cream:#FFFFFF;
+    --orange:#F45B32;
+    --orange-d:#C8492A;
+    --green:#33704F;
+    --green-d:#295A3F;
+    --graphite:#080808;
+    --muted-light:#736F69;
+    --muted-dark:rgba(255,255,255,.62);
+    --line-light:rgba(8,8,8,.14);
+    --line-dark:rgba(255,255,255,.16);
+    --display:'Roboto Condensed',sans-serif;
+    --body:'Roboto Condensed',sans-serif;
+    --accent-serif:'Fraunces',serif;
+    --logo-font:'Archivo',sans-serif;
+    --wrap:1280px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em;}
+  p{margin:0;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+  ::selection{background:var(--orange);color:var(--ink);}
+  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;}
+
+  .eyebrow{
+    font-family:var(--body);
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{content:"";width:16px;height:2px;background:var(--orange);display:inline-block;}
+  .on-dark .eyebrow{color:var(--cream);}
+  .on-light .eyebrow{color:var(--graphite);}
+
+  .accent-line{
+    font-family:var(--accent-serif);
+    font-style:italic;
+    font-weight:400;
+    font-optical-sizing:auto;
+  }
+
+  .btn{
+    font-family:var(--body);
+    font-weight:700;
+    font-size:13.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 26px;
+    border-radius:999px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--orange);color:var(--ink);}
+  .btn-solid:hover{background:var(--cream);}
+  .btn-outline-dark{border-color:var(--line-dark);color:var(--cream);}
+  .btn-outline-dark:hover{border-color:var(--orange);color:var(--orange);}
+  .btn-outline-light{border-color:var(--line-light);color:var(--graphite);}
+  .btn-outline-light:hover{border-color:var(--orange);color:var(--orange-d);}
+  .btn svg{width:14px;height:14px;flex:none;}
+
+  /* ============ NAV — Instrument-style masthead bar ============ */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:16px 0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav.scrolled{box-shadow:0 10px 24px rgba(8,8,8,.06);}
+  .nav .wrap{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;}
+  .logo-mark{display:flex;flex-direction:column;line-height:.86;font-family:var(--logo-font);font-weight:900;letter-spacing:-.01em;}
+  .logo-mark span{display:block;}
+  .logo-mark .l1{color:var(--cream);font-size:20px;}
+  .logo-mark .l2{color:var(--orange);font-size:20px;}
+
+  .nav-logo{display:flex;flex-direction:column;line-height:.86;font-family:var(--logo-font);font-weight:900;letter-spacing:-.01em;flex:none;}
+  .nav-logo span{display:block;}
+  .nav-logo .nlg-1{color:var(--graphite);font-size:17px;}
+  .nav-logo .nlg-2{color:var(--green);font-size:17px;}
+
+  .nav-center{display:flex;justify-content:center;gap:6px;list-style:none;margin:0;padding:0;}
+  .nav-center a{
+    display:inline-flex;align-items:center;
+    font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--graphite);border:1px solid transparent;border-radius:999px;
+    padding:9px 15px;transition:border-color .15s ease,background .15s ease,color .15s ease;white-space:nowrap;
+  }
+  .nav-center a:hover,.nav-center a.active{border-color:var(--line-light);background:var(--paper-2);color:var(--orange-d);}
+
+  .nav-right{display:flex;align-items:center;gap:18px;flex:none;justify-self:end;}
+  .nav-cta{
+    font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--paper);background:var(--graphite);border-radius:999px;padding:9px 18px;
+    transition:background .15s ease;white-space:nowrap;
+  }
+  .nav-cta:hover,.nav-cta.active{background:var(--orange-d);}
+  .nav-links-mobile{display:none;list-style:none;margin:0;padding:0;}
+  .nav-links-mobile a{
+    font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);
+  }
+  .nav-links-mobile a.active{color:var(--orange-d);}
+  .nav-burger{display:none;background:none;border:1px solid var(--line-light);width:38px;height:38px;border-radius:50%;color:var(--graphite);align-items:center;justify-content:center;cursor:pointer;flex:none;}
+  @media(max-width:920px){
+    .nav-center,.nav-cta{display:none;}
+    .nav-burger{display:flex;}
+  }
+
+  /* ---- language switch ---- */
+  .lang-switch{display:flex;align-items:center;gap:7px;flex:none;}
+  .lang-btn{
+    background:none;border:none;padding:3px 2px;cursor:pointer;
+    font-family:var(--body);font-size:11.5px;font-weight:700;letter-spacing:.05em;
+    color:var(--muted-light);transition:color .15s ease;
+  }
+  .lang-btn.active{color:var(--orange-d);}
+  .lang-btn:hover{color:var(--graphite);}
+  .lang-dot{color:var(--line-light);font-size:11px;}
+
+  /* ============ MASTHEAD LOGO ============ */
+  .masthead{background:var(--paper);padding:104px 20px 8px;overflow:hidden;}
+  .masthead-logo{
+    display:flex;justify-content:space-between;align-items:baseline;width:100%;
+    font-family:var(--logo-font);font-weight:900;text-transform:uppercase;
+    line-height:.8;letter-spacing:-.01em;
+    font-size:clamp(46px,12vw,196px);
+  }
+  .masthead-logo .ml-1{color:var(--graphite);}
+  .masthead-logo .ml-2{color:var(--orange);}
+  @media(max-width:640px){
+    .masthead{padding-top:88px;}
+    .masthead-logo{flex-direction:column;gap:.02em;font-size:clamp(46px,17vw,90px);}
+  }
+
+  /* ============ HERO VISUAL BLOCK (full-bleed) ============ */
+  .hero-visual-block{position:relative;width:100%;min-height:58vh;overflow:hidden;background:var(--ink-2);margin-top:18px;}
+  .hv-fill{position:absolute;inset:0;background:
+      radial-gradient(62% 58% at 24% 28%,rgba(244,91,50,.6),transparent 62%),
+      radial-gradient(55% 55% at 80% 74%,rgba(255,255,255,.16),transparent 65%),
+      linear-gradient(160deg,#0a0a08,#1c150a 55%,#3a2205);
+  }
+  .hv-grain{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:14px 14px;mix-blend-mode:overlay;}
+  .hv-play{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:78px;height:78px;border-radius:50%;background:rgba(10,10,8,.5);
+    border:1px solid rgba(255,255,255,.42);color:var(--cream);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;
+  }
+  .hv-play:hover{background:var(--orange);border-color:var(--orange);color:var(--ink);}
+  .hv-play svg{width:26px;height:26px;margin-left:3px;}
+  .hv-overlay{position:absolute;left:0;right:0;bottom:0;padding:30px 32px 36px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+  .hv-headline{font-size:clamp(19px,2.4vw,30px);color:var(--cream);max-width:36ch;font-weight:500;}
+  .hv-tag{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--cream);letter-spacing:.06em;text-transform:uppercase;}
+  .hv-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  @media(prefers-reduced-motion:reduce){.hv-tag .dot{animation:none;}}
+  @media(max-width:640px){.hero-visual-block{min-height:70vh;}.hv-overlay{flex-direction:column;align-items:flex-start;}}
+
+  /* ============ INTRO (small lede + oversized serif statement) ============ */
+  .intro{background:var(--paper);padding:60px 0 92px;}
+  .intro-lede{max-width:36ch;}
+  .intro-lede p{font-size:15px;color:var(--muted-light);margin-top:14px;}
+  .hero-actions{margin-top:28px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+  .hero-statement{margin-top:44px;padding:0 3vw;overflow:hidden;}
+  .hero-statement h1{font-weight:400;letter-spacing:-.01em;color:var(--graphite);}
+  .hero-statement .w-sm{
+    display:block;font-family:var(--display);font-weight:700;
+    font-size:clamp(20px,2.6vw,30px);line-height:1.2;letter-spacing:-.01em;max-width:22ch;
+    padding-left:.5vw;
+  }
+  .hero-statement .w-lg{
+    display:block;font-family:var(--accent-serif);font-style:italic;font-weight:400;
+    font-size:clamp(70px,17.5vw,300px);line-height:.86;letter-spacing:-.01em;margin-top:4px;
+  }
+  .hero-statement .w-accent{color:var(--orange);}
+  @media(max-width:640px){.hero-statement{margin-top:32px;padding:0 3vw;}.hero-statement .w-lg{font-size:clamp(56px,18vw,110px);}}
+
+  /* ============ MANIFESTO (bold color-block interstitial) ============ */
+  .manifesto{background:var(--orange);color:var(--ink);padding:76px 0;overflow:hidden;}
+  .manifesto .eyebrow{color:var(--ink);}
+  .manifesto .eyebrow::before{background:var(--ink);}
+  .manifesto h2{
+    font-family:var(--accent-serif);font-style:italic;font-weight:400;color:var(--ink);
+    font-size:clamp(34px,6.4vw,92px);line-height:1;max-width:17ch;margin-top:20px;text-wrap:balance;
+  }
+  @media(max-width:640px){.manifesto{padding:52px 0;}}
+
+  /* ============ SECTION GENERIC ============ */
+  .section{padding:104px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,42px);margin-top:16px;}
+  .on-dark{background:var(--ink);color:var(--cream);}
+  .on-light{background:var(--paper);color:var(--graphite);}
+  .on-light-2{background:var(--paper-2);color:var(--graphite);}
+
+  /* ---- overview / dotted ring ---- */
+  .overview .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .ring-box{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
+  .ring-box svg{width:100%;height:100%;}
+  .ring-label{position:absolute;font-family:var(--accent-serif);font-style:italic;font-size:19px;color:var(--graphite);}
+  .ring-label.rl-1{top:8%;left:6%;}
+  .ring-label.rl-2{top:44%;left:38%;font-size:23px;}
+  .ring-label.rl-3{bottom:6%;left:2%;color:var(--muted-light);}
+  .ring-label.rl-4{top:10%;right:4%;}
+  .overview-copy .pill-tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--graphite);color:var(--paper);padding:8px 16px;border-radius:999px;margin-bottom:20px;
+  }
+  .overview-copy .pill-tag::before{content:"•";color:var(--orange);}
+  .overview-copy h2{font-size:clamp(28px,3.6vw,40px);}
+  .overview-copy p.lede{font-family:var(--accent-serif);font-style:italic;font-size:19px;color:var(--muted-light);margin-top:18px;max-width:44ch;}
+  .overview-copy .btn{margin-top:30px;}
+  @media(max-width:880px){.overview .wrap{grid-template-columns:1fr;}}
+
+  /* ---- pillar editorial blocks: full-bleed image bands ---- */
+  .pillars{background:var(--ink);}
+  .pillar-block{position:relative;min-height:560px;display:flex;align-items:flex-end;overflow:hidden;}
+  .pillar-block:nth-child(odd){min-height:620px;}
+  .pillar-media{position:absolute;inset:0;}
+  .pillar-media .fill{position:absolute;inset:0;transition:transform .6s ease;}
+  .pillar-block:hover .pillar-media .fill{transform:scale(1.04);}
+  .pillar-media::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,8,.88),rgba(8,8,8,.1) 58%);}
+  .pillar-media .num{position:absolute;top:28px;left:32px;z-index:1;font-family:var(--display);font-weight:900;font-size:15px;color:rgba(255,255,255,.85);letter-spacing:.04em;}
+  .pillar-text{position:relative;z-index:1;max-width:640px;padding:56px 64px;}
+  .pillar-block.flip{justify-content:flex-end;}
+  .pillar-block.flip .pillar-text{text-align:right;}
+  .pillar-text h3{font-size:clamp(28px,3.6vw,44px);color:var(--cream);}
+  .pillar-text .tags{margin-top:18px;font-size:13.5px;letter-spacing:.03em;color:var(--muted-dark);font-weight:600;}
+  @media(max-width:820px){.pillar-block{min-height:420px;}.pillar-text{padding:40px 28px;max-width:100%;}}
+
+  /* ---- approach: two-column timeline + sticky visual ---- */
+  .approach-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start;}
+  .approach-timeline{margin-top:38px;position:relative;padding-left:8px;}
+  .approach-timeline::before{content:'';position:absolute;left:44px;top:10px;bottom:10px;width:1px;background:var(--line-dark);}
+  .tl-step{position:relative;display:flex;gap:26px;padding-bottom:40px;}
+  .tl-step:last-child{padding-bottom:0;}
+  .tl-num{position:relative;z-index:1;flex:0 0 auto;width:88px;font-family:var(--accent-serif);font-style:italic;font-weight:400;font-size:clamp(30px,3.6vw,44px);line-height:1;color:rgba(255,255,255,.16);}
+  .tl-step.is-active .tl-num{color:var(--orange);}
+  .tl-step h4{color:var(--cream);font-size:17px;letter-spacing:.02em;padding-top:6px;}
+  .tl-step p{color:var(--muted-dark);font-size:13.5px;margin-top:8px;max-width:40ch;}
+  .approach-visual{position:sticky;top:100px;min-height:460px;border:1px solid var(--line-dark);overflow:hidden;}
+  .approach-visual .fill{position:absolute;inset:0;}
+  .approach-visual-num{position:absolute;left:24px;bottom:24px;font-family:var(--accent-serif);font-style:italic;font-weight:400;font-size:clamp(40px,5vw,64px);color:var(--cream);}
+  @media(max-width:860px){.section#approach{padding-top:72px;}.approach-layout{grid-template-columns:1fr;gap:36px;}.approach-visual{position:relative;top:auto;min-height:200px;}.approach-timeline::before{left:38px;}.tl-num{width:70px;font-size:clamp(26px,7vw,36px);}}
+
+  /* ---- featured work: big image + overlapping accent image ---- */
+  .feature-case{position:relative;margin-bottom:96px;}
+  .feature-case:last-child{margin-bottom:0;}
+  .fc-media{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line-light);}
+  .fc-media .fill{position:absolute;inset:0;}
+  .fc-accent{position:absolute;top:-30px;right:7%;width:30%;max-width:260px;aspect-ratio:1/1;overflow:hidden;border:6px solid var(--paper);box-shadow:0 22px 50px rgba(8,8,8,.18);}
+  .fc-accent .fill{position:absolute;inset:0;}
+  .feature-case:nth-child(even) .fc-accent{right:auto;left:7%;}
+  .fc-info{margin-top:28px;max-width:58ch;}
+  .fc-info .tag{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-d);font-weight:700;}
+  .fc-info h3{font-size:clamp(22px,2.6vw,30px);margin-top:10px;}
+  .fc-info p{margin-top:8px;font-size:14.5px;color:var(--muted-light);}
+  .fc-tags{margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;}
+  .fc-tags span{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--orange-d);}
+  @media(max-width:640px){.fc-accent{width:38%;top:-18px;}.feature-case{margin-bottom:72px;}}
+
+  /* ---- big stacked stat rows (results + values reuse this rhythm) ---- */
+  .stat-list{border-top:1px solid var(--line-dark);margin-top:8px;}
+  .stat-row{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-dark);}
+  .stat-row .num{font-family:var(--accent-serif);font-style:italic;font-weight:400;font-size:clamp(34px,6vw,72px);color:var(--cream);line-height:1;white-space:nowrap;}
+  .stat-row .label{font-size:13px;color:var(--muted-dark);text-transform:uppercase;letter-spacing:.06em;font-weight:600;text-align:right;max-width:32ch;}
+  @media(max-width:640px){.stat-row{flex-direction:column;align-items:flex-start;gap:4px;}.stat-row .label{text-align:left;}}
+
+  /* ---- stats (legacy grid, still used inline in the Growth service block) ---- */
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-dark);border-left:1px solid var(--line-dark);}
+  .stat-tile{border-right:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark);padding:32px 26px;}
+  .stat-tile .num{font-family:var(--display);font-weight:900;font-size:clamp(30px,3.4vw,42px);color:var(--orange);font-variant-numeric:tabular-nums;}
+  .stat-tile .label{margin-top:8px;font-size:13px;color:var(--muted-dark);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+  .stats-caption{margin-top:18px;font-size:12.5px;color:var(--muted-dark);font-style:italic;}
+  @media(max-width:760px){.stats-row{grid-template-columns:1fr 1fr;}}
+
+  /* ---- why ---- */
+  .why-lede{margin-top:18px;max-width:760px;font-size:clamp(16px,1.9vw,20px);color:var(--muted-light);line-height:1.5;}
+  .hl{color:var(--orange-d);font-weight:600;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-light);border:1px solid var(--line-light);margin-top:32px;}
+  .why-card{background:var(--paper);padding:38px 30px;position:relative;overflow:hidden;}
+  .why-ghost{position:absolute;top:-4px;right:16px;font-family:var(--accent-serif);font-style:italic;font-weight:600;font-size:60px;color:rgba(8,8,8,.05);line-height:1;pointer-events:none;white-space:nowrap;}
+  .why-card .k{position:relative;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--orange);}
+  .why-card h4{position:relative;margin-top:14px;font-size:19px;}
+  .why-card p{position:relative;margin-top:10px;font-size:14.5px;color:var(--muted-light);}
+  @media(max-width:760px){.why-grid{grid-template-columns:1fr;}.why-ghost{font-size:46px;}}
+
+  /* ---- about hero ---- */
+  .about-hero .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center;}
+  .about-visual{position:relative;aspect-ratio:3/4;border:1px solid var(--line-dark);background:
+      radial-gradient(70% 60% at 70% 20%,rgba(244,91,50,.35),transparent 60%),var(--ink-2);
+      display:flex;align-items:flex-end;padding:26px;}
+  .about-visual .years{font-family:var(--display);font-weight:900;font-size:96px;color:var(--cream);line-height:.8;}
+  .about-visual .years sup{font-size:.35em;color:var(--orange);top:-.6em;}
+  .about-copy p.big{font-size:18px;color:var(--muted-dark);max-width:52ch;margin-top:22px;}
+  .about-facts{margin-top:34px;border-top:1px solid var(--line-dark);}
+  .fact-row{display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line-dark);font-size:14.5px;gap:20px;}
+  .fact-row span:first-child{color:var(--cream);}
+  .fact-row span:last-child{color:var(--muted-dark);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* ---- tech-as-advantage ---- */
+  .tech-adv .wrap{max-width:820px;text-align:left;}
+  .tech-adv p{margin-top:18px;font-size:16.5px;color:var(--muted-light);max-width:60ch;}
+  .tech-adv .flip{margin-top:18px;font-family:var(--accent-serif);font-style:italic;font-size:19px;color:var(--graphite);}
+
+  /* ---- team ---- */
+  .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;margin-top:8px;}
+  .team-card{border:1px solid var(--line-light);padding:20px;}
+  .avatar{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-family:var(--display);font-weight:900;font-size:26px;}
+  .avatar.filled{background:linear-gradient(150deg,var(--ink) 0%,var(--ink-2) 60%,var(--orange-d) 130%);color:var(--cream);}
+  .avatar.empty{border:1.5px dashed var(--line-light);color:var(--muted-light);background:var(--paper-2);}
+  .team-card h4{font-size:15.5px;}
+  .team-card .role{font-size:12px;color:var(--orange-d);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
+  .team-card p.bio{font-size:12.5px;color:var(--muted-light);margin-top:10px;line-height:1.5;}
+  .team-card.placeholder .role{color:var(--muted-light);}
+  .team-card.placeholder{opacity:.72;}
+  .placeholder-flag{display:inline-block;margin-top:8px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-light);border:1px solid var(--line-light);padding:3px 8px;}
+  @media(max-width:980px){.team-grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:620px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---- values (stacked rows, same rhythm as results) ---- */
+  .value-list{border-top:1px solid var(--line-dark);margin-top:8px;}
+  .value-row{display:grid;grid-template-columns:60px 1fr 1.3fr;gap:24px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line-dark);}
+  .value-row .idx{font-family:var(--accent-serif);font-style:italic;font-weight:400;font-size:28px;color:var(--orange);}
+  .value-row h4{color:var(--cream);font-size:18px;}
+  .value-row p{color:var(--muted-dark);font-size:13.5px;}
+  @media(max-width:700px){.value-row{grid-template-columns:36px 1fr;row-gap:6px;}.value-row p{grid-column:2;}}
+
+  .about-close{text-align:center;padding:96px 0;}
+  .about-close h2{font-size:clamp(28px,4.2vw,46px);}
+  .about-close .fine{margin-top:16px;font-size:14px;color:var(--muted-light);}
+  .about-close .proof-line{margin-top:22px;font-family:var(--accent-serif);font-style:italic;font-weight:600;font-size:clamp(20px,2.6vw,28px);color:var(--orange-d);}
+
+  /* ---- tools band ---- */
+  .tools-band{background:var(--ink);padding:40px 0;}
+  .tools-wrap{display:flex;flex-wrap:wrap;align-items:center;gap:18px 36px;}
+  .tools-label{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark);flex:0 0 auto;}
+  .tools-row{display:flex;flex-wrap:wrap;gap:14px 32px;}
+  .tools-row span{font-family:var(--display);font-weight:700;font-size:15px;color:var(--cream);opacity:.82;}
+
+  /* ---- services: full-bleed image hero + light detail zone ---- */
+  .service-block{}
+  .service-copy .kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-d);}
+  .service-copy h3{margin-top:14px;font-size:clamp(24px,2.8vw,34px);}
+  .service-copy .lede{margin-top:14px;font-size:15.5px;color:var(--muted-light);max-width:46ch;}
+  .service-copy .btn{margin-top:28px;}
+
+  .svc-hero{position:relative;min-height:500px;display:flex;align-items:flex-end;overflow:hidden;}
+  .svc-hero .fill{position:absolute;inset:0;transition:transform .6s ease;}
+  .svc-hero:hover .fill{transform:scale(1.04);}
+  .svc-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,8,.88),rgba(8,8,8,.08) 60%);}
+  .svc-hero-copy{position:relative;z-index:1;max-width:640px;padding:56px 64px;}
+  .svc-hero.align-right{justify-content:flex-end;}
+  .svc-hero.align-right .svc-hero-copy{text-align:right;}
+  .svc-hero.align-right .svc-hero-copy .lede{margin-left:auto;}
+  .svc-hero-copy .kicker{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);}
+  .svc-hero-copy h3{margin-top:14px;font-size:clamp(26px,3.2vw,38px);color:var(--cream);}
+  .svc-hero-copy .lede{margin-top:14px;font-size:15.5px;color:var(--muted-dark);max-width:46ch;}
+  .svc-hero-copy .btn{margin-top:26px;}
+  @media(max-width:760px){.svc-hero{min-height:340px;}.svc-hero-copy{padding:36px 26px;max-width:100%;}.svc-hero.align-right .svc-hero-copy{text-align:left;}.svc-hero.align-right .svc-hero-copy .lede{margin-left:0;}}
+
+  .svc-detail{padding:44px 0 88px;}
+
+  /* pill carousel — replaces plain feature bullet lists */
+  .pill-carousel{margin-top:8px;display:flex;gap:14px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+  .pill-carousel::-webkit-scrollbar{height:5px;}
+  .pill-carousel::-webkit-scrollbar-thumb{background:var(--line-light);border-radius:10px;}
+  .pill-carousel .pill{scroll-snap-align:start;flex:0 0 auto;max-width:300px;border:1px solid var(--line-light);padding:16px 20px;font-size:13.5px;font-weight:600;color:var(--graphite);background:var(--paper);}
+  .pill-carousel .pill::before{content:"// ";color:var(--orange);font-weight:800;}
+
+  /* campaign carousel */
+  .campaign-carousel{display:flex;gap:2px;margin-top:30px;overflow-x:auto;background:var(--line-light);scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:2px;}
+  .campaign-card{flex:0 0 260px;scroll-snap-align:start;background:var(--ink);aspect-ratio:16/11;position:relative;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .campaign-card .fill{position:absolute;inset:0;}
+  .campaign-card .lbl{position:relative;color:var(--cream);font-size:12px;font-weight:700;letter-spacing:.05em;}
+  .campaign-card .lbl b{display:block;color:var(--orange);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+
+  /* full-bleed dark band (tech service block: no imagery, contrast carries it) */
+  .svc-dark-band{background:var(--ink);padding:88px 0;}
+  .svc-dark-band .kicker{color:var(--orange);}
+  .svc-dark-band h3{color:var(--cream);}
+  .svc-dark-band .lede{color:var(--muted-dark);}
+  .svc-dark-band .flow-card{border-color:var(--line-dark);}
+  .svc-dark-band .flow-card h4{color:var(--cream);}
+  .svc-dark-band .flow-chip{background:rgba(255,255,255,.06);border-color:var(--line-dark);color:var(--cream);}
+  .svc-dark-band .flow-metrics span{color:var(--muted-dark);}
+
+  .flow-diagram{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px;}
+  .flow-card{border:1px solid var(--line-light);padding:26px;}
+  .flow-card .flabel{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-d);}
+  .flow-card h4{margin-top:8px;font-size:15px;}
+  .flow-chain{display:flex;align-items:center;gap:8px;margin-top:20px;flex-wrap:wrap;}
+  .flow-chip{background:var(--paper-2);border:1px solid var(--line-light);font-size:11.5px;font-weight:600;padding:8px 12px;white-space:nowrap;}
+  .flow-arrow{color:var(--orange);font-weight:700;}
+  .flow-metrics{display:flex;gap:20px;margin-top:16px;flex-wrap:wrap;}
+  .flow-metrics span{font-size:11.5px;color:var(--muted-light);border-left:2px solid var(--orange);padding-left:8px;}
+  @media(max-width:760px){.flow-diagram{grid-template-columns:1fr;}}
+
+  /* ---- solutions ---- */
+  .solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line-light);border-left:1px solid var(--line-light);margin-top:10px;}
+  .plan-card{border-right:1px solid var(--line-light);border-bottom:1px solid var(--line-light);padding:40px 32px;background:var(--paper);color:var(--graphite);}
+  .plan-card.mid{background:var(--ink);color:var(--cream);}
+  .plan-card .tier{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-d);}
+  .plan-card.mid .tier{color:var(--orange);}
+  .plan-card h3{margin-top:12px;font-size:24px;}
+  .plan-card .desc{margin-top:12px;font-size:13.5px;color:var(--muted-light);}
+  .plan-card.mid .desc{color:var(--muted-dark);}
+  .plan-card ul{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:9px;}
+  .plan-card li{font-size:13.5px;}
+  .plan-card li::before{content:"— ";color:var(--orange);}
+  .plan-flag{display:block;margin-top:24px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-light);}
+  @media(max-width:880px){.solutions-grid{grid-template-columns:1fr;}}
+
+  /* ---- contact ---- */
+  .contact{background:var(--ink);color:var(--cream);}
+  .contact .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start;}
+  .contact-info h2{font-size:clamp(28px,3.6vw,40px);color:var(--cream);}
+  .contact-info p{margin-top:18px;color:var(--muted-dark);font-size:15px;max-width:40ch;}
+  .contact-direct{margin-top:32px;border-top:1px solid var(--line-dark);padding-top:20px;}
+  .contact-direct div{display:flex;justify-content:space-between;padding:8px 0;font-size:13.5px;color:var(--muted-dark);}
+  .contact-direct div span:last-child{color:var(--cream);}
+
+  .wizard{border:1px solid var(--line-dark);background:var(--ink-2);padding:40px;min-height:380px;display:flex;flex-direction:column;}
+  .wizard-progress{display:flex;gap:6px;margin-bottom:30px;}
+  .wizard-progress i{flex:1;height:2px;background:var(--line-dark);display:block;}
+  .wizard-progress i.done{background:var(--orange);}
+  .wizard-step{display:none;flex:1;flex-direction:column;}
+  .wizard-step.active{display:flex;}
+  .wizard-step .qnum{font-size:11.5px;font-weight:700;color:var(--orange);letter-spacing:.08em;}
+  .wizard-step h3{margin-top:10px;font-size:22px;color:var(--cream);max-width:22ch;}
+  .wizard-input{margin-top:26px;}
+  .wizard-input input{
+    width:100%;background:none;border:none;border-bottom:1.5px solid var(--line-dark);
+    color:var(--cream);font-family:var(--body);font-size:19px;padding:10px 2px;outline:none;
+  }
+  .wizard-input input:focus{border-color:var(--orange);}
+  .wizard-input input::placeholder{color:var(--muted-dark);}
+  .option-grid{margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+  .option-btn{
+    text-align:left;border:1px solid var(--line-dark);background:none;color:var(--cream);
+    padding:13px 16px;font-family:var(--body);font-size:14.5px;cursor:pointer;transition:.15s;
+  }
+  .option-btn:hover{border-color:var(--orange);}
+  .option-btn.selected{border-color:var(--orange);background:rgba(244,91,50,.12);}
+  .wizard-nav{margin-top:auto;padding-top:26px;display:flex;justify-content:space-between;align-items:center;}
+  .wizard-back{font-size:12.5px;color:var(--muted-dark);background:none;border:none;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;}
+  .wizard-back:hover{color:var(--cream);}
+  .wizard-final{display:none;flex:1;flex-direction:column;justify-content:center;}
+  .wizard-final.active{display:flex;}
+  .wizard-final h3{font-size:24px;color:var(--cream);}
+  .wizard-final p{margin-top:12px;color:var(--muted-dark);font-size:14.5px;max-width:42ch;}
+  .wizard-summary{margin-top:22px;border-top:1px solid var(--line-dark);padding-top:16px;display:flex;flex-direction:column;gap:6px;}
+  .wizard-summary div{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted-dark);gap:14px;}
+  .wizard-summary span:last-child{color:var(--cream);text-align:right;max-width:60%;}
+  @media(max-width:880px){.contact .wrap{grid-template-columns:1fr;}.wizard{padding:28px;}}
+
+  /* ---- footer ---- */
+  .footer{background:var(--ink);border-top:1px solid var(--line-dark);padding:64px 0 30px;color:var(--cream);}
+  .footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+  .footer .logo-mark .l1,.footer .logo-mark .l2{font-size:26px;}
+  .footer-desc{margin-top:16px;font-size:13.5px;color:var(--muted-dark);max-width:32ch;}
+  .footer h5{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:16px;}
+  .footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .footer a{font-size:13.5px;color:var(--cream);}
+  .footer a:hover{color:var(--orange);}
+  .footer-bottom{margin-top:56px;padding-top:22px;border-top:1px solid var(--line-dark);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted-dark);}
+  @media(max-width:820px){.footer .wrap{grid-template-columns:1fr 1fr;}}
+
+  /* ============ MULTI-PAGE ADDITIONS ============ */
+  .service-block, #solutions, #capacidades{scroll-margin-top:80px;}
+
+  /* ---- services page header ---- */
+  .services-header{padding:168px 0 64px;background:var(--paper);}
+  .services-header h1{margin-top:16px;font-size:clamp(32px,5.4vw,64px);max-width:17ch;}
+  .services-header .lede{margin-top:20px;font-size:17px;color:var(--muted-light);max-width:62ch;}
+
+  /* ---- capability explorer (Instrument-style accordion + showcase, reskinned in brand colors) ---- */
+  .capability-explorer{background:var(--ink);padding:80px 0;}
+  .ce-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start;}
+  .ce-list{border-top:1px solid var(--line-dark);}
+  .ce-item{width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line-dark);padding:22px 4px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--display);font-weight:700;font-size:19px;color:var(--muted-dark);cursor:pointer;transition:color .2s;}
+  .ce-item:hover,.ce-item.is-active{color:var(--cream);}
+  .ce-plus{font-family:var(--accent-serif);font-size:22px;color:var(--orange);transition:transform .3s;flex:0 0 auto;}
+  .ce-item.is-active .ce-plus{transform:rotate(45deg);}
+  .ce-panel-item{display:none;}
+  .ce-panel-item.is-active{display:block;}
+  .ce-media{aspect-ratio:16/10;overflow:hidden;border:1px solid var(--line-dark);position:relative;}
+  .ce-media .fill{position:absolute;inset:0;}
+  .ce-panel-item p{margin-top:20px;font-size:15.5px;color:var(--muted-dark);max-width:52ch;}
+  .ce-link{display:inline-block;margin-top:16px;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--orange);}
+  @media(max-width:820px){.ce-grid{grid-template-columns:1fr;gap:32px;}.ce-item{font-size:16px;}}
+
+  /* ---- process cards (staggered steps within each service area) ---- */
+  .process-head{margin-top:52px;}
+  .process-head h4{margin-top:10px;font-size:clamp(19px,2.2vw,24px);}
+  .process-cards{display:flex;flex-wrap:wrap;gap:22px;margin-top:32px;}
+  .process-card{background:var(--paper);border:1px solid var(--line-light);border-radius:16px;padding:24px 22px;flex:1 1 220px;max-width:270px;box-shadow:0 14px 30px rgba(8,8,8,.06);}
+  .process-card:nth-child(even){transform:translateY(20px);}
+  .process-card .bar{display:block;width:32px;height:3px;background:var(--orange);margin-bottom:14px;border-radius:2px;}
+  .process-card h4{font-size:15.5px;}
+  .process-card p{margin-top:10px;font-size:13px;color:var(--muted-light);}
+  .svc-dark-band .process-card{background:rgba(255,255,255,.03);border-color:var(--line-dark);}
+  .svc-dark-band .process-card h4{color:var(--cream);}
+  .svc-quote-cta{margin-top:40px;}
+  @media(max-width:760px){.process-card:nth-child(even){transform:none;}}
+
+  /* ---- cta band (page-closing conversion band) ---- */
+  .cta-band{background:var(--ink);padding:100px 0;text-align:center;}
+  .cta-band h2{color:var(--cream);font-size:clamp(30px,4.4vw,52px);}
+  .cta-band p{margin-top:16px;color:var(--muted-dark);font-size:16px;max-width:52ch;margin-left:auto;margin-right:auto;}
+  .cta-band .btn{margin-top:30px;}
+
+  /* ---- green offerings band (home) — full-bleed, edge to edge ---- */
+  .green-band{background:var(--green);}
+  .green-band .gb-inner{display:grid;grid-template-columns:.95fr 1.05fr;align-items:stretch;min-height:640px;}
+  .gb-copy{align-self:center;padding:64px clamp(28px,5vw,72px) 64px clamp(24px,6vw,96px);}
+  .gb-copy h2{color:var(--cream);font-size:clamp(28px,3.4vw,46px);max-width:14ch;}
+  .gb-copy p{margin-top:18px;color:rgba(255,255,255,.82);font-size:16px;max-width:42ch;}
+  .gb-copy .btn{margin-top:28px;}
+  .gb-visual{position:relative;overflow:hidden;background:linear-gradient(155deg,#171512,#3a2a12 55%,var(--orange));}
+  .gb-visual .gb-card{position:absolute;left:12%;top:16%;width:38%;aspect-ratio:9/16;background:rgba(8,8,8,.72);border:1px solid rgba(255,255,255,.14);border-radius:16px;backdrop-filter:blur(2px);}
+  .gb-visual .gb-card .gbc-dot{position:absolute;top:16px;left:16px;width:8px;height:8px;border-radius:50%;background:var(--orange);}
+  .gb-visual .gb-card .gbc-line{position:absolute;left:16px;right:16px;height:7px;border-radius:4px;background:rgba(255,255,255,.22);}
+  .gb-visual .gb-card .gbc-l1{top:40px;width:55%;}
+  .gb-visual .gb-card .gbc-l2{top:56px;width:70%;}
+  .gb-visual .gb-tile{position:absolute;right:10%;bottom:12%;width:30%;aspect-ratio:1/1;background:rgba(255,255,255,.92);border-radius:14px;box-shadow:0 20px 40px rgba(0,0,0,.3);}
+  @media(max-width:820px){
+    .green-band .gb-inner{grid-template-columns:1fr;min-height:0;}
+    .gb-copy{padding:56px 24px 40px;}
+    .gb-visual{aspect-ratio:4/3;}
+  }
+
+  /* ---- clients page ---- */
+  .client-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+  .client-tile{border:1px solid var(--line-light);border-radius:16px;padding:26px 24px;background:var(--paper);}
+  .client-tile .ct-tag{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--orange-d);}
+  .client-tile h4{margin-top:14px;font-family:var(--logo-font);font-weight:900;font-size:19px;color:var(--graphite);letter-spacing:-.01em;}
+  .client-tile p{margin-top:8px;font-size:13.5px;color:var(--muted-light);line-height:1.5;}
+  @media(max-width:880px){.client-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.client-grid{grid-template-columns:1fr;}}
+
+  .testimonial-section{background:var(--ink);padding:88px 0;}
+  .testimonial-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:36px;}
+  .testimonial-card{border:1px solid var(--line-dark);border-radius:16px;padding:32px 28px;background:rgba(255,255,255,.03);}
+  .testimonial-card .tq{font-family:var(--accent-serif);font-style:italic;font-size:19px;line-height:1.4;color:var(--cream);}
+  .testimonial-card .ta-name{margin-top:18px;font-weight:700;font-size:13.5px;color:var(--cream);}
+  .testimonial-card .ta-role{font-size:12px;color:var(--muted-dark);margin-top:2px;}
+  .testimonial-card .placeholder-flag{border-color:var(--line-dark);color:var(--muted-dark);}
+  @media(max-width:760px){.testimonial-grid{grid-template-columns:1fr;}}
+
+  /* ---- blog page ---- */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:36px;}
+  .blog-card{border:1px solid var(--line-light);border-radius:18px;overflow:hidden;background:var(--paper);}
+  .blog-card .bc-media{aspect-ratio:16/10;position:relative;}
+  .blog-card .bc-media .fill{position:absolute;inset:0;}
+  .blog-card .bc-body{padding:22px 22px 24px;}
+  .blog-card .bc-tag{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--orange-d);}
+  .blog-card h3{margin-top:12px;font-size:18px;line-height:1.28;color:var(--graphite);}
+  .blog-card p{margin-top:10px;font-size:13.5px;color:var(--muted-light);line-height:1.5;}
+  .blog-card .placeholder-flag{margin-top:16px;}
+  @media(max-width:920px){.blog-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.blog-grid{grid-template-columns:1fr;}}
+</style>
+
+</head>
+<body data-page="home">
+<!-- ============ NAV ============ -->
+<nav class="nav" id="siteNav">
+  <div class="wrap">
+    <a href="index.html" class="nav-logo" data-nav="home" aria-label="Belver Agency — Inicio">
+      <span class="nlg-1">BELVER</span><span class="nlg-2">AGENCY</span>
+    </a>
+
+    <ul class="nav-center">
+      <li><a href="servicios.html" data-nav="services" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="trabajo.html" data-nav="work" data-i18n="nav.work">Trabajo</a></li>
+      <li><a href="clientes.html" data-nav="clients" data-i18n="nav.clients">Clientes</a></li>
+      <li><a href="blog.html" data-nav="blog" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="nosotros.html" data-nav="about" data-i18n="nav.about">Nosotros</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="contacto.html" class="nav-cta" data-nav="contact" data-i18n="nav.contact">Contacto</a>
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
+        <span class="lang-dot">/</span>
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="nav-burger" id="burgerBtn" data-i18n-aria="nav.openMenu" aria-label="Abrir menú">
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M0 1H16M0 6H16M0 11H16" stroke="currentColor" stroke-width="1.4"/></svg>
+      </button>
+    </div>
+
+    <ul class="nav-links-mobile" id="navLinks">
+      <li><a href="index.html" data-nav="home" data-i18n="nav.home">Inicio</a></li>
+      <li><a href="servicios.html" data-nav="services" data-i18n="nav.services">Servicios</a></li>
+      <li><a href="trabajo.html" data-nav="work" data-i18n="nav.work">Trabajo</a></li>
+      <li><a href="clientes.html" data-nav="clients" data-i18n="nav.clients">Clientes</a></li>
+      <li><a href="blog.html" data-nav="blog" data-i18n="nav.blog">Blog</a></li>
+      <li><a href="nosotros.html" data-nav="about" data-i18n="nav.about">Nosotros</a></li>
+      <li><a href="contacto.html" data-nav="contact" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO (masthead + full-bleed visual + intro) ============ -->
+<header id="home">
+  <section class="masthead">
+    <div class="masthead-logo" role="img" aria-label="Belver Agency">
+      <span class="ml-1">BELVER</span><span class="ml-2">AGENCY</span>
+    </div>
+  </section>
+
+  <section class="hero-visual-block">
+    <div class="hv-fill"></div>
+    <div class="hv-grain"></div>
+    <button class="hv-play" data-i18n-aria="hero.playAria" aria-label="Reproducir reel">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M9 6.5L18 12L9 17.5V6.5Z" fill="currentColor"/></svg>
+    </button>
+    <div class="hv-overlay">
+      <div class="hv-headline accent-line" data-i18n="hero.sub">Una estrategia. Una marca. Un ecosistema diseñado para crecer.</div>
+      <div class="hv-tag"><span class="dot"></span><span data-i18n="hero.tag">Reel de marca — próximamente</span></div>
+    </div>
+  </section>
+
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-lede">
+        <div class="eyebrow on-light" data-i18n="hero.eyebrow">Estrategia · Creatividad · Tecnología · Crecimiento</div>
+        <p data-i18n="hero.copy">Construimos y hacemos crecer marcas — estrategia, diseño y tecnología bajo una misma dirección.</p>
+        <div class="hero-actions">
+          <a href="contacto.html" class="btn btn-solid">
+            <span data-i18n="cta.start">Inicia la conversación</span>
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.4"/></svg>
+          </a>
+          <a href="servicios.html" class="btn btn-outline-light" data-i18n="hero.cta2">Qué hacemos</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-statement">
+      <h1 data-i18n="hero.h1"><span class="w-sm">Tu negocio evolucionó.</span><span class="w-lg">Construye<br>un futuro<br><span class="w-accent">mejor.</span></span></h1>
+    </div>
+  </section>
+</header>
+
+<!-- ============ MANIFESTO ============ -->
+<section class="manifesto">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="strip.eyebrow">Cómo trabajamos</div>
+    <h2 data-i18n="strip.h2">Marketing, construido alrededor de tu negocio.</h2>
+  </div>
+</section>
+
+<!-- ============ GREEN OFFERINGS BAND (full-bleed) ============ -->
+<section class="green-band">
+  <div class="gb-inner">
+    <div class="gb-copy">
+      <h2 data-i18n="gb.h2">Hacemos marcas, productos y campañas.</h2>
+      <p data-i18n="gb.p">Diseñamos marca, producto y estrategia bajo una misma dirección, para que cada punto de contacto hable el mismo idioma.</p>
+      <a href="servicios.html" class="btn btn-solid">
+        <span data-i18n="gb.cta">Ver nuestros servicios</span>
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.4"/></svg>
+      </a>
+    </div>
+    <div class="gb-visual" aria-hidden="true">
+      <div class="gb-card">
+        <span class="gbc-dot"></span>
+        <span class="gbc-line gbc-l1"></span>
+        <span class="gbc-line gbc-l2"></span>
+      </div>
+      <div class="gb-tile"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILLAR EDITORIAL BLOCKS ============ -->
+<section class="pillars">
+  <a class="pillar-block" href="servicios.html#marca">
+    <div class="pillar-media"><div class="fill" style="background:linear-gradient(135deg,#171512,#3a2a12 60%,var(--orange));"></div><span class="num" data-i18n="pillar1.num">01 — MARCA</span></div>
+    <div class="pillar-text">
+      <h3 data-i18n="pillar1.h3">Construye lo que la gente recuerda.</h3>
+      <p class="tags" data-i18n="pillar1.tags">Estrategia · Posicionamiento · Identidad · Dirección Creativa</p>
+    </div>
+  </a>
+  <a class="pillar-block flip" href="servicios.html#digital">
+    <div class="pillar-media"><div class="fill" style="background:linear-gradient(135deg,#0d0d0c,#20211f 55%,#7a6a4a);"></div><span class="num" data-i18n="pillar2.num">02 — DESARROLLO DIGITAL</span></div>
+    <div class="pillar-text">
+      <h3 data-i18n="pillar2.h3">Crea experiencias que conectan con las personas.</h3>
+      <p class="tags" data-i18n="pillar2.tags">Páginas Web · Apps · Tiendas Online · UX/UI</p>
+    </div>
+  </a>
+  <a class="pillar-block" href="servicios.html#contenido">
+    <div class="pillar-media"><div class="fill" style="background:linear-gradient(135deg,#141013,#3a1f2a 55%,#c94f7a);"></div><span class="num" data-i18n="pillar3.num">03 — CONTENIDO</span></div>
+    <div class="pillar-text">
+      <h3 data-i18n="pillar3.h3">Haz que tu marca valga la pena seguir.</h3>
+      <p class="tags" data-i18n="pillar3.tags">Redes Sociales · Video · Fotografía · Copywriting</p>
+    </div>
+  </a>
+  <a class="pillar-block flip" href="servicios.html#growth">
+    <div class="pillar-media"><div class="fill" style="background:linear-gradient(135deg,#1a1108,#4a2c05 55%,var(--orange-d));"></div><span class="num" data-i18n="pillar4.num">04 — CRECIMIENTO & PERFORMANCE</span></div>
+    <div class="pillar-text">
+      <h3 data-i18n="pillar4.h3">Convierte la atención en negocio.</h3>
+      <p class="tags" data-i18n="pillar4.tags">Pauta · Funnel · Analítica · Performance</p>
+    </div>
+  </a>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="section on-dark" id="approach">
+  <div class="wrap approach-layout">
+    <div>
+      <div class="section-head">
+        <div class="eyebrow on-dark" data-i18n="approach.eyebrow">Metodología</div>
+        <h2 data-i18n="approach.h2">¿Cómo lo hacemos?</h2>
+      </div>
+      <div class="approach-timeline">
+        <div class="tl-step is-active">
+          <span class="tl-num">01</span>
+          <div><h4 data-i18n="approach.s1.h">Descubrir</h4><p data-i18n="approach.s1.p">Entendemos el negocio, mercado y objetivos.</p></div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">02</span>
+          <div><h4 data-i18n="approach.s2.h">Estrategia</h4><p data-i18n="approach.s2.p">Definimos dónde competir y qué construir.</p></div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">03</span>
+          <div><h4 data-i18n="approach.s3.h">Crear</h4><p data-i18n="approach.s3.p">Desarrollamos la marca, experiencias y campañas.</p></div>
+        </div>
+        <div class="tl-step">
+          <span class="tl-num">04</span>
+          <div><h4 data-i18n="approach.s4.h">Crecer</h4><p data-i18n="approach.s4.p">Medimos, optimizamos y escalamos.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="approach-visual" aria-hidden="true">
+      <div class="fill" style="background:linear-gradient(160deg,#171512,#3a2a12 60%,var(--orange));"></div>
+      <span class="approach-visual-num">01→04</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="section on-dark" id="results" style="padding-bottom:60px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow on-dark" data-i18n="results.eyebrow">Resultados</div>
+      <h2 data-i18n="results.h2">Construido para generar impacto.</h2>
+    </div>
+    <div class="stat-list">
+      <div class="stat-row"><span class="num">+68%</span><span class="label" data-i18n="results.s1">Leads Calificados</span></div>
+      <div class="stat-row"><span class="num">3.4×</span><span class="label">ROAS</span></div>
+      <div class="stat-row"><span class="num">+42%</span><span class="label" data-i18n="results.s3">Tasa de Conversión</span></div>
+      <div class="stat-row"><span class="num">2.1×</span><span class="label" data-i18n="results.s4">Crecimiento Orgánico</span></div>
+    </div>
+    <p class="stats-caption" data-i18n="results.caption">Cifras ilustrativas de ejemplo — se muestran únicamente métricas reales y verificables una vez disponibles los primeros casos.</p>
+  </div>
+</section>
+
+<!-- ============ WHY BELVER ============ -->
+<section class="section on-light" id="why-belver">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow on-light" data-i18n="why.eyebrow">Por qué Belver</div>
+      <h2 data-i18n="why.h2">¿Por qué trabajar<br>con Belver?</h2>
+    </div>
+    <p class="why-lede" data-i18n="why.lede">Creemos en <span class="hl">sistemas, no en tareas sueltas</span>. Cada decisión conecta <span class="hl">estrategia, creatividad y tecnología</span> para que el crecimiento sea consistente y tuyo.</p>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-ghost" aria-hidden="true" data-i18n="why.c1.ghost">DIRECCIÓN</span><div class="k">01</div><h4 data-i18n="why.c1.h">Estratégicos</h4><p data-i18n="why.c1.p">No ejecutamos sin dirección.</p></div>
+      <div class="why-card"><span class="why-ghost" aria-hidden="true" data-i18n="why.c2.ghost">SISTEMA</span><div class="k">02</div><h4 data-i18n="why.c2.h">Conectados</h4><p data-i18n="why.c2.p">Las disciplinas trabajan como un solo ecosistema.</p></div>
+      <div class="why-card"><span class="why-ghost" aria-hidden="true" data-i18n="why.c3.ghost">CRECER</span><div class="k">03</div><h4 data-i18n="why.c3.h">Construidos para crecer</h4><p data-i18n="why.c3.p">Todo tiene una razón: hacer avanzar el negocio.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT TEASER ============ -->
+<section class="section on-dark about-hero" id="about">
+  <div class="wrap">
+    <div class="about-visual">
+      <div class="years">6<sup>+</sup></div>
+    </div>
+    <div class="about-copy">
+      <div class="eyebrow on-dark" data-i18n="about.eyebrow">Quiénes somos</div>
+      <h2 style="margin-top:16px;font-size:clamp(28px,3.8vw,42px);color:var(--cream);" data-i18n="about.h2">Construimos marcas que hacen avanzar los negocios.</h2>
+      <p class="big" data-i18n="about.p">Tu partner de marketing y crecimiento — más de 6 años transformando ideas en marcas que generan valor.</p>
+      <a href="nosotros.html" class="btn btn-outline-dark" style="margin-top:30px;"><span data-i18n="aboutTeaser.cta">Conoce al equipo →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK TEASER ============ -->
+<section class="section on-light" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow on-light" data-i18n="work.eyebrow">Trabajo Seleccionado</div>
+      <h2 data-i18n="work.h2">Proyectos, casos de éxito y resultados.</h2>
+    </div>
+
+    <div class="feature-case">
+      <div class="fc-media"><div class="fill" style="background:linear-gradient(160deg,#241c10,#5c3a12 60%,var(--orange));"></div></div>
+      <div class="fc-accent"><div class="fill" style="background:linear-gradient(160deg,#150c05,#4a2c05 60%,#c98b3d);"></div></div>
+      <div class="fc-info">
+        <span class="tag" data-i18n="work.soon">Case study — próximamente</span>
+        <h3 data-i18n="work.c1.h">Transformación de Marca</h3>
+        <p data-i18n="work.c1.p">De negocio local a una marca construida para crecer.</p>
+        <div class="fc-tags"><span data-i18n="work.c1.tag1">#Marca</span><span data-i18n="work.c1.tag2">#Estrategia</span></div>
+      </div>
+    </div>
+
+    <div class="feature-case">
+      <div class="fc-media"><div class="fill" style="background:linear-gradient(160deg,#0d0f0e,#243128 60%,#3f8f6b);"></div></div>
+      <div class="fc-accent"><div class="fill" style="background:linear-gradient(150deg,#171512,#3a2a12 55%,var(--orange));"></div></div>
+      <div class="fc-info">
+        <span class="tag" data-i18n="work.soon">Case study — próximamente</span>
+        <h3 data-i18n="work.c2.h">Experiencia Digital</h3>
+        <p data-i18n="work.c2.p">Convertir una presencia digital en un motor de crecimiento.</p>
+        <div class="fc-tags"><span data-i18n="work.c2.tag1">#Digital</span><span data-i18n="work.c2.tag2">#UX/UI</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:8px;">
+      <a href="trabajo.html" class="btn btn-outline-light"><span data-i18n="work.viewall">Ver todo el trabajo →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2 data-i18n="ctaband.h2">¿Listo para construir lo que sigue?</h2>
+    <p data-i18n="ctaband.p">Cuéntanos qué necesitas — te respondemos con una primera lectura estratégica.</p>
+    <a href="contacto.html" class="btn btn-solid">
+      <span data-i18n="cta.start">Inicia la conversación</span>
+      <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7.5 2.5M12 7L7.5 11.5" stroke="currentColor" stroke-width="1.4"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div>
+      <a href="index.html" class="logo-mark"><span class="l1">BELVER</span><span class="l2">AGENCY</span></a>
+      <p class="footer-desc" data-i18n="footer.desc">Partner estratégico de marketing y crecimiento. Estrategia. Creatividad. Tecnología. Crecimiento.</p>
+    </div>
+    <div>
+      <h5 data-i18n="footer.sitemap">Mapa del sitio</h5>
+      <ul>
+        <li><a href="index.html" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="nosotros.html" data-i18n="nav.about">Nosotros</a></li>
+        <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="trabajo.html" data-i18n="nav.work">Trabajo</a></li>
+        <li><a href="clientes.html" data-i18n="nav.clients">Clientes</a></li>
+        <li><a href="blog.html" data-i18n="nav.blog">Blog</a></li>
+        <li><a href="contacto.html" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 data-i18n="footer.services">Servicios</h5>
+      <ul>
+        <li><a href="servicios.html#marca" data-i18n="svc.brand.kicker">Marca</a></li>
+        <li><a href="servicios.html#digital" data-i18n="ce.digital">Desarrollo Digital</a></li>
+        <li><a href="servicios.html#contenido" data-i18n="ce.contenido">Contenido</a></li>
+        <li><a href="servicios.html#growth" data-i18n="ce.growth">Crecimiento &amp; Performance</a></li>
+        <li><a href="servicios.html#tech" data-i18n="svc.tech.kicker">Tecnología</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 data-i18n="footer.contact">Contacto</h5>
+      <ul>
+        <li><a href="mailto:hola@belver.agency">hola@belver.agency</a></li>
+        <li><a href="contacto.html" data-i18n="cta.start">Inicia la conversación</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span data-i18n="footer.rights">© 2026 Belver Agency. Todos los derechos reservados.</span>
+    <span data-i18n="footer.note">Prototipo de sitio — contenido de ejemplo pendiente de reemplazo por el equipo.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var DICT = {
+    "nav.home":{es:"Inicio",en:"Home"},
+    "nav.about":{es:"Nosotros",en:"About"},
+    "nav.services":{es:"Servicios",en:"Services"},
+    "nav.clients":{es:"Clientes",en:"Clients"},
+    "nav.blog":{es:"Blog",en:"Blog"},
+    "nav.work":{es:"Trabajo",en:"Work"},
+    "nav.contact":{es:"Contacto",en:"Contact"},
+    "nav.openMenu":{es:"Abrir menú",en:"Open menu"},
+    "nav.ticker.label":{es:"Soluciones",en:"Solutions"},
+    "nav.ticker.text":{es:"Paquetes Essential, Growth y Prestige",en:"Essential, Growth and Prestige packages"},
+    "nav.ticker.cta":{es:"Ver más →",en:"See more →"},
+    "hero.playAria":{es:"Reproducir reel",en:"Play reel"},
+    "cta.start":{es:"Inicia la conversación",en:"Start a conversation"},
+    "hero.eyebrow":{es:"Estrategia · Creatividad · Tecnología · Crecimiento",en:"Strategy · Creativity · Technology · Growth"},
+    "hero.h1":{es:"<span class=\"w-sm\">Tu negocio evolucionó.</span><span class=\"w-lg\">Construye<br>un futuro<br><span class=\"w-accent\">mejor.</span></span>",en:"<span class=\"w-sm\">Your business has evolved.</span><span class=\"w-lg\">Shape<br>a better<br><span class=\"w-accent\">future.</span></span>"},
+    "hero.copy":{es:"Construimos y hacemos crecer marcas — estrategia, diseño y tecnología bajo una misma dirección.",en:"We build and grow brands — strategy, design and technology under one direction."},
+    "hero.sub":{es:"Una estrategia. Una marca. Un ecosistema diseñado para crecer.",en:"One strategy. One brand. One ecosystem designed to grow."},
+    "hero.cta2":{es:"Qué hacemos",en:"What we do"},
+    "hero.tag":{es:"Reel de marca — próximamente",en:"Brand reel — coming soon"},
+    "strip.eyebrow":{es:"Cómo trabajamos",en:"How we work"},
+    "strip.h2":{es:"Marketing, construido alrededor de tu negocio.",en:"Marketing, built around your business."},
+    "overview.pill":{es:"Qué hacemos",en:"What we do"},
+    "overview.h2":{es:"Capacidades conectadas para marcas que quieren liderar.",en:"Connected capabilities for brands built to lead."},
+    "overview.lede":{es:"Tenemos las capacidades para resolver el crecimiento de tu empresa — no una lista de servicios sueltos, sino <span class=\"hl\">un sistema</span>.",en:"We have the capabilities to solve your company's growth — not a list of separate services, but <span class=\"hl\">a system</span>."},
+    "overview.cta":{es:"Explorar capacidades",en:"Explore capabilities"},
+    "ring.brand":{es:"Marca",en:"Brand"},
+    "ring.digital":{es:"Digital",en:"Digital"},
+    "ring.growth":{es:"Crecimiento",en:"Growth"},
+    "ring.tech":{es:"Tecnología",en:"Technology"},
+    "pillar1.num":{es:"01 — MARCA",en:"01 — BRAND"},
+    "pillar1.h3":{es:"Construye lo que la gente recuerda.",en:"Build what people remember."},
+    "pillar1.tags":{es:"Estrategia · Posicionamiento · Identidad · Dirección Creativa",en:"Strategy · Positioning · Identity · Creative Direction"},
+    "pillar2.num":{es:"02 — DESARROLLO DIGITAL",en:"02 — DIGITAL DEVELOPMENT"},
+    "pillar2.h3":{es:"Crea experiencias que conectan con las personas.",en:"Create experiences that move people."},
+    "pillar2.tags":{es:"Páginas Web · Apps · Tiendas Online · UX/UI",en:"Websites · Apps · Online Stores · UX/UI"},
+    "pillar3.num":{es:"03 — CONTENIDO",en:"03 — CONTENT"},
+    "pillar3.h3":{es:"Haz que tu marca valga la pena seguir.",en:"Make your brand worth following."},
+    "pillar3.tags":{es:"Redes Sociales · Video · Fotografía · Copywriting",en:"Social Media · Video · Photography · Copywriting"},
+    "pillar4.num":{es:"04 — CRECIMIENTO & PERFORMANCE",en:"04 — GROWTH & PERFORMANCE"},
+    "pillar4.h3":{es:"Convierte la atención en negocio.",en:"Turn attention into business."},
+    "pillar4.tags":{es:"Pauta · Funnel · Analítica · Performance",en:"Paid Media · Funnel · Analytics · Performance"},
+    "approach.eyebrow":{es:"Metodología",en:"Approach"},
+    "approach.h2":{es:"¿Cómo lo hacemos?",en:"How do we do it?"},
+    "approach.s1.h":{es:"Descubrir",en:"Discover"},
+    "approach.s1.p":{es:"Entendemos el negocio, mercado y objetivos.",en:"We understand the business, market and goals."},
+    "approach.s2.h":{es:"Estrategia",en:"Strategize"},
+    "approach.s2.p":{es:"Definimos dónde competir y qué construir.",en:"We define where to compete and what to build."},
+    "approach.s3.h":{es:"Crear",en:"Create"},
+    "approach.s3.p":{es:"Desarrollamos la marca, experiencias y campañas.",en:"We develop the brand, experiences and campaigns."},
+    "approach.s4.h":{es:"Crecer",en:"Grow"},
+    "approach.s4.p":{es:"Medimos, optimizamos y escalamos.",en:"We measure, optimize and scale."},
+    "work.eyebrow":{es:"Trabajo Seleccionado",en:"Selected Work"},
+    "work.h2":{es:"Proyectos, casos de éxito y resultados.",en:"Projects, success stories and results."},
+    "work.soon":{es:"Case study — próximamente",en:"Case study — coming soon"},
+    "work.c1.h":{es:"Transformación de Marca",en:"Brand Transformation"},
+    "work.c1.p":{es:"De negocio local a una marca construida para crecer.",en:"From local business to a brand built for growth."},
+    "work.c2.h":{es:"Experiencia Digital",en:"Digital Experience"},
+    "work.c2.p":{es:"Convertir una presencia digital en un motor de crecimiento.",en:"Turning a digital presence into a growth engine."},
+    "work.c3.h":{es:"Campaña de Crecimiento",en:"Growth Campaign"},
+    "work.c3.p":{es:"De la atención a resultados medibles.",en:"From attention to measurable results."},
+    "work.c1.tag1":{es:"#Marca",en:"#Brand"},
+    "work.c1.tag2":{es:"#Estrategia",en:"#Strategy"},
+    "work.c2.tag1":{es:"#Digital",en:"#Digital"},
+    "work.c2.tag2":{es:"#UX/UI",en:"#UX/UI"},
+    "work.c3.tag1":{es:"#Growth",en:"#Growth"},
+    "work.c3.tag2":{es:"#Performance",en:"#Performance"},
+    "results.eyebrow":{es:"Resultados",en:"Results"},
+    "results.h2":{es:"Construido para generar impacto.",en:"Built for impact."},
+    "results.s1":{es:"Leads Calificados",en:"Qualified Leads"},
+    "results.s3":{es:"Tasa de Conversión",en:"Conversion Rate"},
+    "results.s4":{es:"Crecimiento Orgánico",en:"Organic Growth"},
+    "results.caption":{es:"Cifras ilustrativas de ejemplo — se muestran únicamente métricas reales y verificables una vez disponibles los primeros casos.",en:"Illustrative example figures — only real, verifiable metrics will be shown once the first cases are available."},
+    "why.eyebrow":{es:"Por qué Belver",en:"Why Belver"},
+    "why.h2":{es:"¿Por qué trabajar<br>con Belver?",en:"Why work<br>with Belver?"},
+    "why.lede":{es:"Creemos en <span class=\"hl\">sistemas, no en tareas sueltas</span>. Cada decisión conecta <span class=\"hl\">estrategia, creatividad y tecnología</span> para que el crecimiento sea consistente y tuyo.",en:"We believe in <span class=\"hl\">systems, not loose tasks</span>. Every decision connects <span class=\"hl\">strategy, creativity and technology</span> so growth is consistent — and yours."},
+    "why.c1.h":{es:"Estratégicos",en:"Strategic"},
+    "why.c1.p":{es:"No ejecutamos sin dirección.",en:"We don't execute without direction."},
+    "why.c1.ghost":{es:"DIRECCIÓN",en:"DIRECTION"},
+    "why.c2.h":{es:"Conectados",en:"Connected"},
+    "why.c2.p":{es:"Las disciplinas trabajan como un solo ecosistema.",en:"Disciplines work as a single ecosystem."},
+    "why.c2.ghost":{es:"SISTEMA",en:"SYSTEM"},
+    "why.c3.h":{es:"Construidos para crecer",en:"Built for growth"},
+    "why.c3.p":{es:"Todo tiene una razón: hacer avanzar el negocio.",en:"Everything has a reason: moving the business forward."},
+    "why.c3.ghost":{es:"CRECER",en:"GROW"},
+    "about.eyebrow":{es:"Quiénes somos",en:"Who we are"},
+    "about.h2":{es:"Construimos marcas que hacen avanzar los negocios.",en:"We build brands that move business forward."},
+    "about.p":{es:"Tu partner de marketing y crecimiento — más de 6 años transformando ideas en marcas que generan valor.",en:"Your marketing and growth partner — 6+ years turning ideas into brands that generate value."},
+    "about.f1.k":{es:"Experiencia que evoluciona con el mercado",en:"Experience that moves with the market"},
+    "about.f1.v":{es:"6+ años",en:"6+ years"},
+    "about.f2.k":{es:"Estrategia · Creatividad · Tecnología · Crecimiento",en:"Strategy · Creativity · Technology · Growth"},
+    "about.f2.v":{es:"Una sola dirección",en:"One direction"},
+    "about.f3.k":{es:"Equipo multidisciplinario",en:"Multidisciplinary team"},
+    "about.f3.v":{es:"5 personas",en:"5 people"},
+    "techadv.eyebrow":{es:"La tecnología como ventaja",en:"Technology as an advantage"},
+    "techadv.h2":{es:"Construido para lo que sigue.",en:"Built for what's next."},
+    "techadv.p":{es:"Integramos IA, automatización y tecnología para un marketing más inteligente y escalable.",en:"We integrate AI, automation and technology for smarter, more scalable marketing."},
+    "techadv.flip":{es:"No utilizamos la tecnología para reemplazar la creatividad. La utilizamos para potenciarla.",en:"We don't use technology to replace creativity. We use it to power it."},
+    "team.eyebrow":{es:"Las personas detrás de Belver",en:"The people behind Belver"},
+    "team.h2":{es:"Un equipo. Distintas mentes.",en:"One team. Different minds."},
+    "team.luisa.role":{es:"CEO y Directora de Estrategia",en:"CEO & Strategy Director"},
+    "team.luisa.bio":{es:"Lidera la visión, estrategia y dirección de Belver.",en:"Leads Belver's vision, strategy and direction."},
+    "team.david.role":{es:"Diseñador Gráfico",en:"Graphic Designer"},
+    "team.david.bio":{es:"Da forma visual a la identidad y las piezas de marca de Belver.",en:"Shapes the visual identity and brand pieces at Belver."},
+    "team.luis.bio":{es:"Diseña experiencias digitales centradas en el usuario.",en:"Designs user-centered digital experiences."},
+    "team.ph.name":{es:"Nombre pendiente",en:"Name pending"},
+    "team.ph1.role":{es:"Directora/Director de Proyectos",en:"Project Director"},
+    "team.ph1.bio":{es:"Dirección, coordinación y ejecución de proyectos.",en:"Direction, coordination and execution of projects."},
+    "team.ph2.role":{es:"Gerente de Comunidad y Contenido",en:"Community & Content Manager"},
+    "team.ph2.bio":{es:"Contenido, comunidad y presencia digital.",en:"Content, community and digital presence."},
+    "team.ph.flag":{es:"Por confirmar",en:"To be confirmed"},
+    "values.eyebrow":{es:"Nuestros valores",en:"Our values"},
+    "values.h2":{es:"Cuatro ideas. Sin relleno.",en:"Four ideas. No filler."},
+    "values.v1.h":{es:"Pensamiento Estratégico",en:"Strategic Thinking"},
+    "values.v1.p":{es:"Pensamos antes de ejecutar. Cada decisión debe tener un propósito.",en:"We think before we execute. Every decision must have a purpose."},
+    "values.v2.h":{es:"Creatividad con Propósito",en:"Creativity with Purpose"},
+    "values.v2.p":{es:"Creamos para diferenciar, conectar y generar valor.",en:"We create to differentiate, connect and generate value."},
+    "values.v3.h":{es:"Compromiso",en:"Ownership"},
+    "values.v3.p":{es:"Nos involucramos en cada proyecto como parte del equipo del cliente.",en:"We get involved in every project as part of the client's team."},
+    "values.v4.h":{es:"Evolución Constante",en:"Constant Evolution"},
+    "values.v4.p":{es:"Aprendemos, experimentamos y evolucionamos con el mercado.",en:"We learn, experiment and evolve with the market."},
+    "close.eyebrow":{es:"Qué hacemos",en:"What we do"},
+    "close.h2":{es:"Distintas disciplinas.<br>Un solo punto de vista.",en:"Different disciplines.<br>One point of view."},
+    "close.fine":{es:"Un equipo construido para hacer avanzar tu negocio.",en:"One team built to move your business forward."},
+    "close.proof":{es:"Si no mueve el negocio, no es estrategia.",en:"If it doesn't move the business, it isn't strategy."},
+    "tools.label":{es:"Trabajamos con",en:"We work with"},
+    "tools.t1":{es:"Meta Ads",en:"Meta Ads"},
+    "tools.t2":{es:"Google Ads",en:"Google Ads"},
+    "tools.t3":{es:"HubSpot",en:"HubSpot"},
+    "tools.t4":{es:"Webflow",en:"Webflow"},
+    "tools.t5":{es:"Shopify",en:"Shopify"},
+    "tools.t6":{es:"Looker Studio",en:"Looker Studio"},
+    "services.eyebrow":{es:"Servicios",en:"Services"},
+    "services.h2":{es:"Todos los servicios, organizados por áreas.",en:"All services, organized by area."},
+    "svc.brand.kicker":{es:"Marca",en:"Brand"},
+    "svc.brand.h3":{es:"Tu negocio evolucionó. Tu marca también debería hacerlo.",en:"Your business evolved. Your brand should too."},
+    "svc.brand.lede":{es:"Estrategia · Identidad · Experiencia",en:"Strategy · Identity · Experience"},
+    "svc.brand.f1":{es:"Posicionamiento",en:"Positioning"},
+    "svc.brand.f2":{es:"Identidad",en:"Identity"},
+    "svc.brand.f3":{es:"Dirección Creativa",en:"Creative Direction"},
+    "svc.brand.cta":{es:"Ver trabajo de marca →",en:"View brand work →"},
+    "svc.digital.h3":{es:"Qué creamos",en:"What we create"},
+    "svc.digital.lede":{es:"Sitios y apps diseñados alrededor de las personas — y de tu negocio.",en:"Websites & apps designed around people — and around your business."},
+    "svc.digital.f1":{es:"Sitios web · Landing Pages · E-commerce",en:"Websites · Landing Pages · E-commerce"},
+    "svc.digital.f2":{es:"UX/UI · Sistemas de Diseño",en:"UX/UI · Design Systems"},
+    "svc.digital.f3":{es:"Productos Digitales · Plataformas · Apps",en:"Digital Products · Platforms · Apps"},
+    "svc.digital.f4":{es:"Desarrollo · Front-end · Back-end · Integraciones",en:"Development · Front-end · Back-end · Integrations"},
+    "svc.digital.close":{es:"Diseñado para verse. Construido para usarse.",en:"Designed to be seen. Built to be used."},
+    "svc.growth.kicker":{es:"Crecimiento",en:"Growth"},
+    "svc.growth.h3":{es:"Convierte la atención en crecimiento.",en:"Turn attention into growth."},
+    "svc.growth.lede":{es:"Campañas que conectan tu marca con las personas correctas y convierten inversión en resultados.",en:"Campaigns that connect your brand with the right people and turn investment into results."},
+    "svc.growth.camp1":{es:"Campaña 01",en:"Campaign 01"},
+    "svc.growth.camp2":{es:"Campaña 02",en:"Campaign 02"},
+    "svc.growth.camp3":{es:"Campaña 03",en:"Campaign 03"},
+    "svc.growth.f1":{es:"Estrategia — Segmentación · Funnel · Planeación de Medios",en:"Strategy — Targeting · Funnel · Media Planning"},
+    "svc.growth.f2":{es:"Creatividad — Concepto · Copy · Formatos · Testing",en:"Creative — Concept · Copy · Formats · Testing"},
+    "svc.growth.f3":{es:"Optimización — Presupuesto · A/B Testing · Escalamiento",en:"Optimization — Budget · A/B Testing · Scaling"},
+    "svc.growth.f4":{es:"Analítica — Tracking · Atribución · Reportes",en:"Analytics — Tracking · Attribution · Reporting"},
+    "svc.growth.conv":{es:"Conversión",en:"Conversion"},
+    "svc.growth.caption":{es:"Cifras ilustrativas — reemplazar con resultados reales de campaña.",en:"Illustrative figures — replace with real campaign results."},
+    "svc.social.kicker":{es:"Redes Sociales",en:"Social Media"},
+    "svc.social.h3":{es:"Haz que tu marca valga la pena seguir.",en:"Make your brand worth following."},
+    "svc.social.lede":{es:"Contenido y gestión de redes para que tu marca se vea, se sienta y se mantenga relevante.",en:"Content and social management so your brand looks, feels and stays relevant."},
+    "svc.social.f1":{es:"Creación de Contenido — Reels · Fotografía · Video · Copy",en:"Content Creation — Reels · Photography · Video · Copy"},
+    "svc.social.f2":{es:"Gestión de Redes — Estrategia · Planeación · Publicación · Comunidad",en:"Social Media Management — Strategy · Planning · Publishing · Community"},
+    "svc.tech.kicker":{es:"Tecnología",en:"Technology"},
+    "svc.tech.h3":{es:"Construido para trabajar de forma más inteligente.",en:"Built to work smarter."},
+    "svc.tech.lede":{es:"Tecnología que conecta procesos, automatiza tareas y convierte datos en acciones.",en:"Technology that connects processes, automates tasks and turns data into action."},
+    "svc.tech.crm.h":{es:"Pipeline en tiempo real",en:"Real-time pipeline"},
+    "svc.tech.crm.c1":{es:"Nuevo Lead",en:"New Lead"},
+    "svc.tech.crm.c2":{es:"Calificado",en:"Qualified"},
+    "svc.tech.crm.c3":{es:"Propuesta",en:"Proposal"},
+    "svc.tech.crm.c4":{es:"Ganado",en:"Won"},
+    "svc.tech.crm.m1":{es:"Leads",en:"Leads"},
+    "svc.tech.crm.m2":{es:"Conversión",en:"Conversion"},
+    "svc.tech.crm.m3":{es:"Pipeline",en:"Pipeline"},
+    "svc.tech.crm.m4":{es:"Ingresos",en:"Revenue"},
+    "svc.tech.auto.label":{es:"02 — Automatización",en:"02 — Automation"},
+    "svc.tech.auto.h":{es:"Del formulario a la venta",en:"From form to sale"},
+    "svc.tech.auto.c1":{es:"Formulario",en:"Form"},
+    "svc.tech.auto.c4":{es:"Seguimiento",en:"Follow-up"},
+    "svc.tech.auto.c5":{es:"Equipo de Ventas",en:"Sales Team"},
+    "svc.tech.ai.label":{es:"03 — IA",en:"03 — AI"},
+    "svc.tech.ai.h":{es:"Datos que se vuelven acción",en:"Data that becomes action"},
+    "svc.tech.ai.c1":{es:"Datos del Cliente",en:"Customer Data"},
+    "svc.tech.ai.c2":{es:"IA",en:"AI"},
+    "svc.tech.ai.c3":{es:"Insights",en:"Insights"},
+    "svc.tech.ai.c4":{es:"Acción",en:"Action"},
+    "svc.tech.int.label":{es:"04 — Integraciones",en:"04 — Integrations"},
+    "svc.tech.int.h":{es:"Un ecosistema conectado",en:"A connected ecosystem"},
+    "svc.tech.int.c1":{es:"Sitio Web",en:"Website"},
+    "svc.tech.int.c5":{es:"Analítica",en:"Analytics"},
+    "solutions.eyebrow":{es:"Soluciones",en:"Solutions"},
+    "solutions.h2":{es:"Paquetes Essential, Growth y Prestige.",en:"Essential, Growth and Prestige packages."},
+    "sol.p1.h":{es:"Fundamentos sólidos",en:"Solid foundations"},
+    "sol.p1.desc":{es:"Para marcas que necesitan orden y una base estratégica antes de escalar.",en:"For brands that need order and a strategic base before scaling."},
+    "sol.p1.f1":{es:"Diagnóstico de marca",en:"Brand diagnostic"},
+    "sol.p1.f2":{es:"Lineamientos esenciales de identidad",en:"Essential identity guidelines"},
+    "sol.p1.f3":{es:"Presencia digital base",en:"Baseline digital presence"},
+    "sol.p2.h":{es:"Escala con dirección",en:"Scale with direction"},
+    "sol.p2.desc":{es:"Para marcas listas para crecer con estrategia, contenido y adquisición conectados.",en:"For brands ready to grow with strategy, content and acquisition connected."},
+    "sol.p2.f1":{es:"Estrategia + ejecución integrada",en:"Integrated strategy + execution"},
+    "sol.p2.f2":{es:"Contenido y gestión de redes",en:"Content and social management"},
+    "sol.p2.f3":{es:"Campañas de adquisición",en:"Acquisition campaigns"},
+    "sol.p3.h":{es:"Partner estratégico completo",en:"Full strategic partner"},
+    "sol.p3.desc":{es:"Para empresas que buscan a Belver como su departamento de marketing extendido.",en:"For companies that want Belver as their extended marketing department."},
+    "sol.p3.f1":{es:"Dirección estratégica continua",en:"Ongoing strategic direction"},
+    "sol.p3.f2":{es:"Marca, digital, growth y tecnología",en:"Brand, digital, growth and technology"},
+    "sol.p3.f3":{es:"Reporting y optimización constante",en:"Reporting and continuous optimization"},
+    "sol.flag":{es:"Contenido genérico — pendiente de definición final",en:"Generic content — pending final definition"},
+    "contact.eyebrow":{es:"Contacto",en:"Contact"},
+    "contact.h2":{es:"Hablemos de tu negocio.",en:"Let's talk about your business."},
+    "contact.p":{es:"Diagnóstico + formulario de calificación. Cuéntanos qué necesitas y te contactamos con una primera lectura estratégica.",en:"Diagnostic + qualifying form. Tell us what you need and we'll get back to you with an initial strategic read."},
+    "contact.email.k":{es:"Email",en:"Email"},
+    "contact.wa.k":{es:"WhatsApp",en:"WhatsApp"},
+    "contact.loc.k":{es:"Ubicación",en:"Location"},
+    "contact.loc.v":{es:"Por definir",en:"To be defined"},
+    "wz.1.num":{es:"01 — WhatsApp",en:"01 — WhatsApp"},
+    "wz.1.h":{es:"¿Cuál es tu WhatsApp?",en:"What's your WhatsApp number?"},
+    "wz.next":{es:"Continuar →",en:"Continue →"},
+    "wz.back":{es:"← Atrás",en:"← Back"},
+    "wz.2.num":{es:"02 — Empresa",en:"02 — Company"},
+    "wz.2.h":{es:"¿Cuál es el nombre de tu empresa?",en:"What's your company's name?"},
+    "wz.2.ph":{es:"Nombre de tu empresa",en:"Your company's name"},
+    "wz.3.num":{es:"03 — Necesidad",en:"03 — Need"},
+    "wz.3.h":{es:"¿Qué necesitas para tu negocio?",en:"What does your business need?"},
+    "wz.3.o1":{es:"Branding",en:"Branding"},
+    "wz.3.o2":{es:"Página web / Digital",en:"Website / Digital"},
+    "wz.3.o3":{es:"Contenido & Social Media",en:"Content & Social Media"},
+    "wz.3.o4":{es:"Publicidad / Growth",en:"Advertising / Growth"},
+    "wz.3.o5":{es:"Marketing integral",en:"Full-service marketing"},
+    "wz.3.o6":{es:"No estoy seguro",en:"Not sure"},
+    "wz.4.num":{es:"04 — Objetivo",en:"04 — Goal"},
+    "wz.4.h":{es:"¿Cuál es tu principal objetivo?",en:"What's your main goal?"},
+    "wz.4.o1":{es:"Posicionar tu marca",en:"Position your brand"},
+    "wz.4.o2":{es:"Conseguir más clientes",en:"Get more clients"},
+    "wz.4.o3":{es:"Aumentar ventas",en:"Increase sales"},
+    "wz.4.o4":{es:"Lanzar un proyecto",en:"Launch a project"},
+    "wz.4.o5":{es:"Escalar tu negocio",en:"Scale your business"},
+    "wz.4.o6":{es:"Transformar tu marketing",en:"Transform your marketing"},
+    "wz.5.num":{es:"05 — Presupuesto",en:"05 — Budget"},
+    "wz.5.h":{es:"¿Qué nivel de inversión estás considerando?",en:"What investment level are you considering?"},
+    "wz.5.o6":{es:"Aún no lo hemos definido",en:"We haven't defined it yet"},
+    "wz.6.num":{es:"06 — Timing",en:"06 — Timing"},
+    "wz.6.h":{es:"¿Cuándo quieres empezar?",en:"When do you want to start?"},
+    "wz.6.o1":{es:"Ahora",en:"Now"},
+    "wz.6.o2":{es:"En los próximos 30 días",en:"In the next 30 days"},
+    "wz.6.o3":{es:"En 1–3 meses",en:"In 1–3 months"},
+    "wz.6.o4":{es:"Más adelante",en:"Later"},
+    "wz.6.o5":{es:"Solo estoy explorando",en:"Just exploring"},
+    "wz.done.num":{es:"Listo",en:"Done"},
+    "wz.done.h":{es:"Gracias — recibimos tu información.",en:"Thanks — we received your information."},
+    "wz.done.p":{es:"Nuestro equipo revisa tu diagnóstico y te contacta por WhatsApp o email con los próximos pasos.",en:"Our team reviews your diagnostic and reaches out by WhatsApp or email with next steps."},
+    "footer.desc":{es:"Partner estratégico de marketing y crecimiento. Estrategia. Creatividad. Tecnología. Crecimiento.",en:"Strategic marketing and growth partner. Strategy. Creativity. Technology. Growth."},
+    "footer.sitemap":{es:"Mapa del sitio",en:"Sitemap"},
+    "footer.services":{es:"Servicios",en:"Services"},
+    "footer.contact":{es:"Contacto",en:"Contact"},
+    "footer.rights":{es:"© 2026 Belver Agency. Todos los derechos reservados.",en:"© 2026 Belver Agency. All rights reserved."},
+    "footer.note":{es:"Prototipo de sitio — contenido de ejemplo pendiente de reemplazo por el equipo.",en:"Site prototype — example content pending replacement by the team."},
+    "aboutTeaser.cta":{es:"Conoce al equipo →",en:"Meet the team →"},
+    "work.viewall":{es:"Ver todo el trabajo →",en:"See all our work →"},
+    "ctaband.h2":{es:"¿Listo para construir lo que sigue?",en:"Ready to build what's next?"},
+    "ctaband.p":{es:"Cuéntanos qué necesitas — te respondemos con una primera lectura estratégica.",en:"Tell us what you need — we'll get back to you with an initial strategic read."},
+    "services.h1":{es:"Todo lo que tu marca necesita para crecer, bajo una misma dirección.",en:"Everything your brand needs to grow, under one direction."},
+    "services.lede":{es:"Marca, desarrollo digital, contenido, crecimiento y tecnología — como un solo sistema, no una lista de tareas sueltas.",en:"Brand, digital development, content, growth and technology — as one system, not a list of separate tasks."},
+    "ce.marca":{es:"Marca",en:"Brand"},
+    "ce.digital":{es:"Desarrollo Digital",en:"Digital Development"},
+    "ce.contenido":{es:"Contenido",en:"Content"},
+    "ce.growth":{es:"Crecimiento & Performance",en:"Growth & Performance"},
+    "ce.viewmore":{es:"Ver en detalle ↓",en:"See details ↓"},
+    "ce.marca.p":{es:"Estrategia, identidad y dirección creativa para marcas que quieren liderar su categoría.",en:"Strategy, identity and creative direction for brands that want to lead their category."},
+    "ce.digital.p":{es:"Páginas web, apps y tiendas online diseñadas alrededor de las personas — y de tu negocio.",en:"Websites, apps and online stores designed around people — and around your business."},
+    "ce.contenido.p":{es:"Contenido y gestión de redes para que tu marca se vea, se sienta y se mantenga relevante.",en:"Content and social management so your brand looks, feels and stays relevant."},
+    "ce.growth.p":{es:"Campañas que conectan tu marca con las personas correctas y convierten inversión en resultados.",en:"Campaigns that connect your brand with the right people and turn investment into results."},
+    "ce.tech.p":{es:"Tecnología que conecta procesos, automatiza tareas y convierte datos en acciones.",en:"Technology that connects processes, automates tasks and turns data into action."},
+    "proc.eyebrow":{es:"Cómo lo hacemos",en:"How we do it"},
+    "svc.quote.cta":{es:"Cotizar este servicio",en:"Get a quote for this service"},
+    "svc.brand.f4":{es:"Naming",en:"Naming"},
+    "svc.brand.f5":{es:"Manual de Marca",en:"Brand Guidelines"},
+    "svc.digital.f5":{es:"Tiendas Online · E-commerce",en:"Online Stores · E-commerce"},
+    "svc.content.f3":{es:"Copywriting & Guion",en:"Copywriting & Scriptwriting"},
+    "svc.content.f4":{es:"Producción Audiovisual",en:"Audiovisual Production"},
+    "proc.marca.h":{es:"De la estrategia al manual de marca.",en:"From strategy to brand guidelines."},
+    "proc.marca.1.h":{es:"Entendimiento del negocio",en:"Understanding the business"},
+    "proc.marca.1.p":{es:"Conocemos la marca: qué hace, cómo lo hace y hacia dónde quiere ir.",en:"We get to know the brand: what it does, how it does it and where it wants to go."},
+    "proc.marca.2.h":{es:"Workshop creativo",en:"Creative workshop"},
+    "proc.marca.2.p":{es:"Definimos valores, personalidad, propósito y audiencia junto a tu equipo.",en:"We define values, personality, purpose and audience together with your team."},
+    "proc.marca.3.h":{es:"Benchmark",en:"Benchmark"},
+    "proc.marca.3.p":{es:"Investigamos la categoría para identificar tendencias y oportunidades.",en:"We research the category to identify trends and opportunities."},
+    "proc.marca.4.h":{es:"Propuestas de identidad",en:"Identity proposals"},
+    "proc.marca.4.p":{es:"Desarrollamos alternativas de logo y dirección visual, con su racional.",en:"We develop logo alternatives and visual direction, with their rationale."},
+    "proc.marca.5.h":{es:"Universo gráfico",en:"Graphic universe"},
+    "proc.marca.5.p":{es:"Construimos paleta, tipografía y aplicaciones en un moodboard.",en:"We build the palette, typography and applications in a moodboard."},
+    "proc.marca.6.h":{es:"Manual de marca",en:"Brand guidelines"},
+    "proc.marca.6.p":{es:"Entregamos la guía completa para el uso correcto de la identidad.",en:"We deliver the complete guide for proper use of the identity."},
+    "proc.digital.h":{es:"De la idea al producto en producción.",en:"From idea to product in production."},
+    "proc.digital.1.h":{es:"Descubrimiento & Arquitectura",en:"Discovery & Architecture"},
+    "proc.digital.1.p":{es:"Mapeamos objetivos, usuarios y la estructura del sitio o producto.",en:"We map goals, users and the structure of the site or product."},
+    "proc.digital.2.h":{es:"UX/UI",en:"UX/UI"},
+    "proc.digital.2.p":{es:"Diseñamos wireframes y una interfaz clara, usable y alineada a tu marca.",en:"We design wireframes and a clear, usable interface aligned with your brand."},
+    "proc.digital.3.h":{es:"Desarrollo",en:"Development"},
+    "proc.digital.3.p":{es:"Construimos el sitio, app o tienda con código limpio y escalable.",en:"We build the site, app or store with clean, scalable code."},
+    "proc.digital.4.h":{es:"QA & Lanzamiento",en:"QA & Launch"},
+    "proc.digital.4.p":{es:"Probamos, optimizamos y publicamos con acompañamiento post-lanzamiento.",en:"We test, optimize and publish with post-launch support."},
+    "proc.contenido.h":{es:"De la idea a la publicación.",en:"From idea to publication."},
+    "proc.contenido.1.h":{es:"Investigación & Tono de voz",en:"Research & Tone of Voice"},
+    "proc.contenido.1.p":{es:"Definimos audiencia, pilares de contenido y la voz de tu marca.",en:"We define audience, content pillars and your brand's voice."},
+    "proc.contenido.2.h":{es:"Calendario editorial",en:"Editorial calendar"},
+    "proc.contenido.2.p":{es:"Planeamos temas, formatos y frecuencia de publicación.",en:"We plan topics, formats and publishing frequency."},
+    "proc.contenido.3.h":{es:"Producción",en:"Production"},
+    "proc.contenido.3.p":{es:"Creamos fotografía, video, diseño y copy para cada pieza.",en:"We create photography, video, design and copy for each piece."},
+    "proc.contenido.4.h":{es:"Publicación & Analítica",en:"Publishing & Analytics"},
+    "proc.contenido.4.p":{es:"Publicamos, medimos desempeño y ajustamos la estrategia.",en:"We publish, measure performance and adjust the strategy."},
+    "proc.growth.h":{es:"De la inversión al resultado medible.",en:"From investment to measurable results."},
+    "proc.growth.1.h":{es:"Auditoría & Objetivos",en:"Audit & Goals"},
+    "proc.growth.1.p":{es:"Revisamos cuentas activas y definimos metas medibles.",en:"We review active accounts and define measurable goals."},
+    "proc.growth.2.h":{es:"Estrategia de medios",en:"Media strategy"},
+    "proc.growth.2.p":{es:"Diseñamos segmentación, funnel y plan de inversión.",en:"We design targeting, funnel and investment plan."},
+    "proc.growth.3.h":{es:"Lanzamiento & Testing",en:"Launch & Testing"},
+    "proc.growth.3.p":{es:"Activamos campañas y probamos creatividades y públicos.",en:"We launch campaigns and test creatives and audiences."},
+    "proc.growth.4.h":{es:"Optimización & Escalamiento",en:"Optimization & Scaling"},
+    "proc.growth.4.p":{es:"Ajustamos presupuesto y escalamos lo que funciona.",en:"We adjust budget and scale what works."},
+    "gb.h2":{es:"Hacemos marcas, productos y campañas.",en:"We build brands, products and campaigns."},
+    "gb.p":{es:"Diseñamos marca, producto y estrategia bajo una misma dirección, para que cada punto de contacto hable el mismo idioma.",en:"We design brand, product and strategy under one direction, so every touchpoint speaks the same language."},
+    "gb.cta":{es:"Ver nuestros servicios",en:"See our services"},
+    "clients.eyebrow":{es:"Clientes",en:"Clients"},
+    "clients.h1":{es:"Marcas que confían su crecimiento en Belver.",en:"Brands that trust Belver with their growth."},
+    "clients.lede":{es:"Trabajamos junto a empresas de distintas industrias para construir marca, producto y campañas que mueven el negocio.",en:"We work alongside companies across industries to build brand, product and campaigns that move the business."},
+    "clients.grid.eyebrow":{es:"Industrias",en:"Industries"},
+    "clients.grid.h2":{es:"Empresas con las que hemos trabajado.",en:"Companies we've worked with."},
+    "clients.flag":{es:"Por confirmar",en:"To be confirmed"},
+    "clients.c1.tag":{es:"Retail",en:"Retail"},
+    "clients.c1.h":{es:"Cliente 01",en:"Client 01"},
+    "clients.c1.p":{es:"Estrategia de marca y relanzamiento de identidad visual.",en:"Brand strategy and visual identity relaunch."},
+    "clients.c2.tag":{es:"Tecnología",en:"Technology"},
+    "clients.c2.h":{es:"Cliente 02",en:"Client 02"},
+    "clients.c2.p":{es:"Diseño y desarrollo de producto digital.",en:"Digital product design and development."},
+    "clients.c3.tag":{es:"Salud",en:"Healthcare"},
+    "clients.c3.h":{es:"Cliente 03",en:"Client 03"},
+    "clients.c3.p":{es:"Contenido y gestión de redes sociales.",en:"Content and social media management."},
+    "clients.c4.tag":{es:"Bienes Raíces",en:"Real Estate"},
+    "clients.c4.h":{es:"Cliente 04",en:"Client 04"},
+    "clients.c4.p":{es:"Campaña de adquisición y generación de leads.",en:"Acquisition campaign and lead generation."},
+    "clients.c5.tag":{es:"Educación",en:"Education"},
+    "clients.c5.h":{es:"Cliente 05",en:"Client 05"},
+    "clients.c5.p":{es:"Sitio web institucional y automatización de CRM.",en:"Institutional website and CRM automation."},
+    "clients.c6.tag":{es:"Hospitalidad",en:"Hospitality"},
+    "clients.c6.h":{es:"Cliente 06",en:"Client 06"},
+    "clients.c6.p":{es:"Marca, tienda online y estrategia de performance.",en:"Brand, online store and performance strategy."},
+    "clients.tm.eyebrow":{es:"Testimonios",en:"Testimonials"},
+    "clients.tm.h2":{es:"Lo que dicen quienes ya trabajan con nosotros.",en:"What the people already working with us say."},
+    "clients.tm.flag":{es:"Testimonio de ejemplo",en:"Sample testimonial"},
+    "clients.tm1.q":{es:"\"Belver entendió nuestro negocio desde la primera reunión y lo tradujo en una marca que por fin se siente nuestra.\"",en:"\"Belver understood our business from the first meeting and turned it into a brand that finally feels like ours.\""},
+    "clients.tm1.name":{es:"Nombre pendiente",en:"Name pending"},
+    "clients.tm1.role":{es:"Cargo · Empresa por confirmar",en:"Role · Company to be confirmed"},
+    "clients.tm2.q":{es:"\"El equipo trabaja como una extensión del nuestro — estrategia, diseño y resultados en una sola conversación.\"",en:"\"The team works like an extension of ours — strategy, design and results in a single conversation.\""},
+    "clients.tm2.name":{es:"Nombre pendiente",en:"Name pending"},
+    "clients.tm2.role":{es:"Cargo · Empresa por confirmar",en:"Role · Company to be confirmed"},
+    "blog.eyebrow":{es:"Blog",en:"Blog"},
+    "blog.h1":{es:"Ideas sobre marca, contenido y crecimiento.",en:"Ideas on brand, content and growth."},
+    "blog.lede":{es:"Notas breves y prácticas sobre estrategia, diseño y tecnología, escritas por el equipo de Belver.",en:"Short, practical notes on strategy, design and technology, written by the Belver team."},
+    "blog.soon":{es:"Artículo completo — próximamente",en:"Full article — coming soon"},
+    "blog.p1.tag":{es:"Marca",en:"Brand"},
+    "blog.p1.h":{es:"Por qué tu marca necesita un sistema, no solo un logo.",en:"Why your brand needs a system, not just a logo."},
+    "blog.p1.p":{es:"Un logo bien hecho no sostiene una marca por sí solo. Te contamos qué otras piezas necesita un sistema de identidad que realmente funcione.",en:"A well-made logo can't carry a brand on its own. Here's what else a real identity system needs."},
+    "blog.p2.tag":{es:"Desarrollo Digital",en:"Digital Development"},
+    "blog.p2.h":{es:"5 señales de que tu sitio web te está costando clientes.",en:"5 signs your website is costing you customers."},
+    "blog.p2.p":{es:"Velocidad, claridad y estructura son las primeras impresiones de tu negocio. Revisa si tu sitio está ayudando o estorbando.",en:"Speed, clarity and structure are your business's first impression. Check whether your site is helping or hurting."},
+    "blog.p3.tag":{es:"Contenido",en:"Content"},
+    "blog.p3.h":{es:"Contenido consistente vs. contenido viral: qué prioriza tu marca.",en:"Consistent content vs. viral content: what your brand should prioritize."},
+    "blog.p3.p":{es:"Perseguir la viralidad puede distraerte de lo que realmente construye marca en el tiempo. Cómo decidir qué priorizar.",en:"Chasing virality can distract from what actually builds a brand over time. How to decide what to prioritize."},
+    "blog.p4.tag":{es:"Crecimiento & Performance",en:"Growth & Performance"},
+    "blog.p4.h":{es:"Cómo leer un dashboard de performance sin perderte en los números.",en:"How to read a performance dashboard without getting lost in the numbers."},
+    "blog.p4.p":{es:"No todas las métricas importan igual. Te contamos cuáles seguir de cerca según el objetivo de tu campaña.",en:"Not every metric matters equally. Here's which ones to watch closely based on your campaign's goal."},
+    "blog.p5.tag":{es:"Tecnología",en:"Technology"},
+    "blog.p5.h":{es:"El error más común al automatizar procesos de marketing.",en:"The most common mistake when automating marketing processes."},
+    "blog.p5.p":{es:"Automatizar sin definir el proceso primero solo escala el desorden. Por dónde empezar antes de conectar herramientas.",en:"Automating before defining the process just scales the chaos. Where to start before connecting tools."},
+    "blog.p6.tag":{es:"Marca",en:"Brand"},
+    "blog.p6.h":{es:"Cuándo es momento de repensar tu identidad de marca.",en:"When it's time to rethink your brand identity."},
+    "blog.p6.p":{es:"No todas las señales de que necesitas un rebranding son obvias. Estas son las que vemos con más frecuencia.",en:"Not every sign that you need a rebrand is obvious. These are the ones we see most often."}
+  };
+  var WZ_SUMMARY_LABELS = {es:["WhatsApp","Empresa","Necesidad","Objetivo","Presupuesto","Timing"],en:["WhatsApp","Company","Need","Goal","Budget","Timing"]};
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      var entry = DICT[key];
+      if(entry && entry[lang] !== undefined) el.innerHTML = entry[lang];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-ph');
+      var entry = DICT[key];
+      if(entry && entry[lang] !== undefined) el.setAttribute('placeholder', entry[lang]);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-aria');
+      var entry = DICT[key];
+      if(entry && entry[lang] !== undefined) el.setAttribute('aria-label', entry[lang]);
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(b){
+      var on = b.dataset.lang === lang;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true':'false');
+    });
+    window.__belverLang = lang;
+    try{ localStorage.setItem('belver-lang', lang); }catch(e){}
+    if (window.renderWizardSummary) renderWizardSummary();
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.dataset.lang); });
+  });
+
+  var savedLang = 'es';
+  try{ var s = localStorage.getItem('belver-lang'); if(s === 'es' || s === 'en') savedLang = s; }catch(e){}
+  if(savedLang !== 'es'){ applyLang(savedLang); } else { window.__belverLang = 'es'; }
+
+
+  // nav scroll state + page-level active link
+  var nav = document.getElementById('siteNav');
+  var links = document.querySelectorAll('[data-nav]');
+  var currentPage = document.body.getAttribute('data-page') || 'home';
+  links.forEach(function(a){ a.classList.toggle('active', a.dataset.nav === currentPage); });
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 40); }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // mobile burger -> simple toggle of nav-links as a dropdown
+  var burger = document.getElementById('burgerBtn');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    var open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    navLinks.style.cssText += 'position:absolute;top:64px;left:0;right:0;background:#FFFFFF;border-top:1px solid rgba(8,8,8,.14);flex-direction:column;padding:20px 32px;gap:18px;z-index:99;';
+  });
+
+  // dotted ring graphic
+  var svg = document.getElementById('dotRing');
+  if(svg){
+    var ns = 'http://www.w3.org/2000/svg';
+    var cx=160, cy=160, r=128, n=30;
+    for(var i=0;i<n;i++){
+      var a = (i/n) * Math.PI*2 - Math.PI/2;
+      var x = cx + r*Math.cos(a);
+      var y = cy + r*Math.sin(a);
+      var c = document.createElementNS(ns,'circle');
+      c.setAttribute('cx',x.toFixed(1));
+      c.setAttribute('cy',y.toFixed(1));
+      c.setAttribute('r', i%2===0 ? 5 : 3.4);
+      c.setAttribute('fill', i < n*0.6 ? '#F45B32' : 'rgba(8,8,8,.16)');
+      svg.appendChild(c);
+    }
+  }
+
+  // capability explorer accordion (services page)
+  var ceItems = document.querySelectorAll('.ce-item');
+  if(ceItems.length){
+    ceItems.forEach(function(item){
+      item.addEventListener('click', function(){
+        ceItems.forEach(function(i){ i.classList.remove('is-active'); });
+        item.classList.add('is-active');
+        var target = item.dataset.target;
+        document.querySelectorAll('.ce-panel-item').forEach(function(p){
+          p.classList.toggle('is-active', p.dataset.panel === target);
+        });
+      });
+    });
+  }
+
+  // contact wizard (contact page only)
+  if(document.getElementById('wizard')){
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.wizard-step'));
+    var progress = document.getElementById('wizardProgress');
+    var finalPanel = document.getElementById('wizardFinal');
+    var summaryBox = document.getElementById('wizardSummary');
+    var current = 0;
+    var answers = {};
+
+    steps.forEach(function(){
+      var i = document.createElement('i');
+      progress.appendChild(i);
+    });
+    var renderProgress = function(){
+      Array.prototype.forEach.call(progress.children, function(el,idx){
+        el.classList.toggle('done', idx <= current);
+      });
+    };
+    var showStep = function(i){
+      steps.forEach(function(s){ s.classList.remove('active'); });
+      finalPanel.classList.remove('active');
+      if(i >= steps.length){
+        renderWizardSummary();
+        finalPanel.classList.add('active');
+      } else {
+        steps[i].classList.add('active');
+      }
+      renderProgress();
+    };
+    window.renderWizardSummary = function(){
+      if(!summaryBox) return;
+      var lang = window.__belverLang || 'es';
+      var labels = WZ_SUMMARY_LABELS[lang];
+      var vals = [answers.whatsapp, answers.empresa, answers.necesidad, answers.objetivo, answers.presupuesto, answers.timing];
+      summaryBox.innerHTML = labels.map(function(lab, idx){
+        return '<div><span>'+lab+'</span><span>'+(vals[idx] || '—')+'</span></div>';
+      }).join('');
+    };
+
+    document.querySelectorAll('[data-next]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var step = btn.closest('.wizard-step');
+        var idx = parseInt(step.dataset.step,10);
+        if(idx === 0) answers.whatsapp = document.getElementById('q-whatsapp').value.trim();
+        if(idx === 1) answers.empresa = document.getElementById('q-empresa').value.trim();
+        current = idx + 1;
+        showStep(current);
+      });
+    });
+    document.querySelectorAll('[data-back]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var step = btn.closest('.wizard-step');
+        var idx = parseInt(step.dataset.step,10);
+        current = Math.max(0, idx - 1);
+        showStep(current);
+      });
+    });
+    document.querySelectorAll('.option-grid').forEach(function(grid){
+      var group = grid.dataset.group;
+      grid.querySelectorAll('.option-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          grid.querySelectorAll('.option-btn').forEach(function(b){ b.classList.remove('selected'); });
+          btn.classList.add('selected');
+          answers[group] = btn.textContent;
+          var step = grid.closest('.wizard-step');
+          var idx = parseInt(step.dataset.step,10);
+          setTimeout(function(){ current = idx + 1; showStep(current); }, 260);
+        });
+      });
+    });
+    showStep(0);
+  } else {
+    window.renderWizardSummary = function(){};
+  }
+})();
+</script>
+
+</body>
+</html>
